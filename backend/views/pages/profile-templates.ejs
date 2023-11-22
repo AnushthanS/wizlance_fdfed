@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head'); %>
+  <style>
+    #modalOverlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.4);
+      z-index: 9999;
+    }
+
+    #modal {
+      position: fixed;
+      width: 90%;
+      top: 55%;
+      left: 50%;
+      text-align: center;
+      background-color: #fafafa;
+      box-sizing: border-box;
+      opacity: 0;
+      transform: translate(-50%, -50%);
+      transition: all 300ms ease-in-out;
+    }
+
+    #modalOverlay.modal-open #modal {
+      opacity: 2;
+      top: 50%;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <% if(loggedIn === true){ %>
+    <%- include('../partials/header_nos') %>
+    <% } else{ %>
+    <%- include('../partials/header_nol') %>
+    <% } %>
+  </header>
+
+  <div>
+
+    <div class="w-[99%] h-auto p-10  bg-slate-200 rounded-3xl m-auto mt-7">
+      <div class="flex">
+
+        <div>
+          <img src="https://www.kindpng.com/picc/m/80-800188_random-user-random-icon-png-transparent-png.png" class="w-32 sm:mt-6 rounded-full" alt="">
+          <h1></h1>
+        </div>
+        <div class="ml-12 h-40 mt-12">
+          <h1 class="text-xl justify-self-center">Name : <%= freelancer.firstName + " " + freelancer.lastName %></h1>
+          <p class="text-lg mt-2">Skills : <%= freelancer.freelancerSkills.join(", ") %></p>
+          <p class="mt-2">Ratings: <%= freelancer.freelancerRating %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content flex flex-row gap-[40%] max-md:flex-col max-md:gap-10  px-10">
+    <div class="">
+      <h1 class="text-2xl mt-11"><%= gig.name %></h1>
+      <p class="text-base  mt-10 "><%= gig.description %></p>
+    </div>
+
+    <div class="flex max-md:justify-center ">
+      <div class=" h-auto mt-10 rounded overflow-hidden shadow-lg  p-10  border-[var(--color5)] border-2 flex-col ">
+        <div class="font-bold text-xl">Price : $<%= gig.price %> <span class="text-sm">/hr</span></div>
+        <div class="px-2 py-10 pt-4">
+
+          <p class="text-gray-700 text-base">
+            <%= gig.subCategory %> </p>
+        </div>
+        <div class="m-10 ">
+          <% if (loggedIn === true) { %>
+
+          <% if (userIsFreelancer ) { %>
+
+          <% } else { %>
+          <a href="/<%= category %>/<%= subCategory %>/<%= gig.name %>/payment"><button type="button" id="open" class="w-52  bg-[var(--color2)] font-semibold text-white py-2 px-4 border border-[var(--color5)] hover:border-transparent rounded">
+              Hire
+            </button></a>
+          <% } %>
+          <% } else { %>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="mt-40">
+    <%- include('../partials/footer') %>
+  </footer>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script>
+    $('#open').click(function() {
+      $('#modalOverlay').show().addClass('modal-open');
+    });
+
+    $('#close').click(function() {
+      var modal = $('#modalOverlay');
+      modal.removeClass('modal-open');
+      setTimeout(function() {
+        modal.hide();
+      }, 200);
+    });
+  </script>
+</body>
+
+</html>
