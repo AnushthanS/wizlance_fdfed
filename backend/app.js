@@ -6,6 +6,7 @@ const session = require("express-session");
 const mongoStore = require("connect-mongodb-session")(session);
 const flash = require("connect-flash");
 const multer = require("multer");
+const cors = require('cors'); //import cors for frontend and backend link
 
 const mainRoutes = require("./routes/main");
 const signInRoutes = require("./routes/auth");
@@ -64,6 +65,8 @@ app.use(
 );
 
 app.use(flash());
+
+app.use(cors()); //cors integration
 
 app.use((req, res, next) => {
   if (req.session.user) {
