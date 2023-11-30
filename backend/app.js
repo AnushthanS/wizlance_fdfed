@@ -3,8 +3,8 @@ const path = require("path");
 const express = require("express");
 const mongoose = require("mongoose");
 const session = require("express-session");
-const mongoStore = require("connect-mongodb-session")(session);
-const flash = require("connect-flash");
+// const mongoStore = require("connect-mongodb-session")(session);
+// const flash = require("connect-flash");
 const multer = require("multer");
 const cors = require('cors'); //import cors for frontend and backend link
 
@@ -21,10 +21,10 @@ const app = express();
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
-const store = new mongoStore({
-  uri: MONGODB_URI,
-  collection: "sessions",
-});
+// const store = new mongoStore({
+//   uri: MONGODB_URI,
+//   collection: "sessions",
+// });
 
 const fileStorage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -47,36 +47,38 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-app.set("view engine", "ejs");
+// app.set("view engine", "ejs");
 
-app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+// app.use(express.urlencoded({ extended: false }));
+
 app.use(multer({ storage: fileStorage, fileFilter }).single("image"));
 
-app.use(express.static(__dirname + "/public"));
+// app.use(express.static(__dirname + "/public"));
 app.use("/images", express.static(path.join(__dirname, "images")));
 
-app.use(
-  session({
-    secret: "wizlance",
-    resave: false,
-    saveUninitialized: false,
-    store,
-  })
-);
+// app.use(
+//   session({
+//     secret: "wizlance",
+//     resave: false,
+//     saveUninitialized: false,
+//     store,
+//   })
+// );
 
-app.use(flash());
+// app.use(flash());
 
 app.use(cors()); //cors integration
 
-app.use((req, res, next) => {
-  if (req.session.user) {
-    const fname = req.session.user.firstName;
-    const letter = fname.slice(0, 1);
-    res.locals.profileLogo = letter;
-  }
-  res.locals.loggedIn = req.session.isLoggedIn;
-  next();
-});
+// app.use((req, res, next) => {
+//   if (req.session.user) {
+//     const fname = req.session.user.firstName;
+//     const letter = fname.slice(0, 1);
+//     res.locals.profileLogo = letter;
+//   }
+//   res.locals.loggedIn = req.session.isLoggedIn;
+//   next();
+// });
 
 app.use(mainRoutes);
 app.use(signInRoutes);

@@ -3,44 +3,18 @@ const Gig = require("../models/gig");
 const User = require("../models/user");
 const Orders = require("../models/orders");
 
-exports.getLandingPage = (req, res, next) => {
-  res.render("pages/landing_nol.ejs");
-};
-
-exports.getMainPage = (req, res, next) => {
-  if (req.session.isLoggedIn === true) {
-    Categories.find({}).then((categories) => {
-      res.render("pages/mainpage", { categories, user: req.session.user });
-    });
-  } else {
-    res.redirect("login");
-  }
-};
-
-exports.getCategories = (req, res, next) => {
-  const category = req.params.category;
-  console.log(category);
-
-  Categories.findOne({ name: category }).then((category) => {
-    res.render("pages/graphics-design", { category });
+exports.getCategories = async (req, res, next) => {
+  const categories = await Categories.find({}, " _id name imageUrl");
+  res.status(200).json({
+    categories,
   });
 };
 
-exports.getSubCategories = (req, res, next) => {
-  const category = req.params.pages;
-  const subCategory = req.params.categories;
-  Gig.find({ subCategory })
-    .then((gigs) => {
-      console.log(gigs);
-      res.render("pages/result-template", {
-        category,
-        subCategory,
-        gigs,
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+exports.getSubCategories = async (req, res, next) => {
+  const categories = await Categories.find({}, "subCategories");
+  res.status(200).json({
+    categories,
+  });
 };
 
 exports.getGigs = (req, res, next) => {
