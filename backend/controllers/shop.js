@@ -11,10 +11,27 @@ exports.getCategories = async (req, res, next) => {
 };
 
 exports.getSubCategories = async (req, res, next) => {
-  const categories = await Categories.find({}, "subCategories");
-  res.status(200).json({
-    categories,
-  });
+  const categoryId = req.body.categoryId;
+
+  try {
+    const subCategories = await Categories.findById(
+      categoryId,
+      "subCategories"
+    );
+    if (!subCategories) {
+      const err = new Error("No category found");
+      err.statusCode = 404;
+      throw err;
+    }
+    res.status(200).json({
+      subCategories,
+    });
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
 };
 
 exports.getGigs = (req, res, next) => {
