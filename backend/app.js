@@ -2,29 +2,18 @@ require("dotenv").config();
 const path = require("path");
 const express = require("express");
 const mongoose = require("mongoose");
-const session = require("express-session");
-// const mongoStore = require("connect-mongodb-session")(session);
-// const flash = require("connect-flash");
 const multer = require("multer");
 const cors = require('cors'); //import cors for frontend and backend link
 
 const mainRoutes = require("./routes/main");
-const signInRoutes = require("./routes/auth");
+const authRoutes = require("./routes/auth");
 const categoryRoutes = require("./routes/categories");
 const adminRoutes = require("./routes/admin");
 const freelancerRoutes = require("./routes/freelancer");
 
 const app = express();
 
-// const MONGODB_URI =
-//   "mongodb+srv://wizproject13:Room%40112@wizlance.5ecwge7.mongodb.net/wizlance";
-
 const MONGODB_URI = process.env.MONGODB_URI;
-
-// const store = new mongoStore({
-//   uri: MONGODB_URI,
-//   collection: "sessions",
-// });
 
 const fileStorage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -47,26 +36,10 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-// app.set("view engine", "ejs");
-
 app.use(express.json());
-// app.use(express.urlencoded({ extended: false }));
 
 app.use(multer({ storage: fileStorage, fileFilter }).single("image"));
-
-// app.use(express.static(__dirname + "/public"));
 app.use("/images", express.static(path.join(__dirname, "images")));
-
-// app.use(
-//   session({
-//     secret: "wizlance",
-//     resave: false,
-//     saveUninitialized: false,
-//     store,
-//   })
-// );
-
-// app.use(flash());
 
 app.use(cors()); //cors integration
 
@@ -81,10 +54,17 @@ app.use(cors()); //cors integration
 // });
 
 app.use(mainRoutes);
-app.use(signInRoutes);
+app.use(authRoutes);
 app.use(categoryRoutes);
 app.use(adminRoutes);
 app.use(freelancerRoutes);
+
+app.use((error, req, res, next) => {
+  const status = error?.statusCode
+  const message = error.message
+  const data = error?.data;
+  res.status(status).json({message, data})
+})
 
 mongoose
   .connect(MONGODB_URI)

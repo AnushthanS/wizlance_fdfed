@@ -6,7 +6,7 @@ const router = express.Router();
 
 //api
 router.get("/categories", shopController.getCategories);
-router.get("/subcategories", shopController.getSubCategories);
+router.post("/subcategories", shopController.getSubCategories);
 
 router.get("/:pages/:categories/:gig", shopController.getGigs);
 router.get("/:pages/:categories/:gig/payment", shopController.getPayment);
