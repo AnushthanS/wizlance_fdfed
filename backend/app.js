@@ -17,7 +17,7 @@ const freelancerRoutes = require("./routes/freelancer");
 const app = express();
 
 // const MONGODB_URI =
-//   "mongodb+srv://wizproject13:Room%40112@wizlance.5ecwge7.mongodb.net/wizlance";
+// "mongodb+srv://wizproject13:Room%40112@wizlance.5ecwge7.mongodb.net/wizlance";
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
