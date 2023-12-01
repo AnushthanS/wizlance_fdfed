@@ -1,4 +1,5 @@
 const Categories = require("../models/category");
+const SubCategories = require("../models/subcategory")
 const Gig = require("../models/gig");
 const User = require("../models/user");
 const Orders = require("../models/orders");
@@ -11,39 +12,69 @@ exports.getCategories = async (req, res, next) => {
 };
 
 exports.getSubCategories = async (req, res, next) => {
-  const categories = await Categories.find({}, "subCategories");
-  res.status(200).json({
-    categories,
-  });
-};
+  const category = req.body.categoryId;
 
-exports.getGigs = (req, res, next) => {
-  const category = req.params.pages;
-  const subCategory = req.params.categories;
-  const gig = req.params.gig;
-
-  Gig.findOne({ name: gig })
-    .then((gig) => {
-      console.log(gig);
-      const freelancerEmail = gig.freelancerEmail;
-      const userIsFreelancer = req.session.user.email === freelancerEmail;
-      User.findOne({ isFreelancer: true, email: freelancerEmail }).then(
-        (freelancer) => {
-          res.render("pages/profile-templates", {
-            gig,
-            freelancer,
-            category,
-            subCategory,
-            userIsFreelancer,
-          });
-        }
-      );
-    })
-    .catch((err) => {
-      console.log(err);
+  try {
+    const subCategories = await SubCategories.find({category});
+    if (!subCategories) {
+      const err = new Error("No subcategories found");
+      err.statusCode = 404;
+      throw err;
+    }
+    res.status(200).json({
+      subCategories,
     });
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
 };
 
+exports.getGigs = async (req, res, next) => {
+  const subcategory = req.body.subcategoryId;
+
+  try {
+    const gigs = await Gig.find({subcategory});
+    if (!gigs) {
+      const err = new Error("No gigs found");
+      err.statusCode = 404;
+      throw err;
+    }
+    res.status(200).json({
+      gigs,
+    });
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
+};
+
+exports.getGigDetails = async (req, res, next) => {
+  const gigId = req.body.gigId;
+
+  try {
+    const gig = await Gig.findById(gigId);
+    if (!gig) {
+      const err = new Error("No gig found");
+      err.statusCode = 404;
+      throw err;
+    }
+    res.status(200).json({
+      gig,
+    });
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
+}
+
+// upgrade remaining
 exports.getPayment = (req, res, next) => {
   const gigName = req.params.gig;
   res.render("pages/Payment", { gigName });
