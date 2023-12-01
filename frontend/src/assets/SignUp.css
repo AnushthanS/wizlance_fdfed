@@ -1,0 +1,93 @@
+.div1 {
+    max-width: 60vw;
+    /* min-width: 400px; */
+    margin: auto;
+    /* width: ; */
+    /* padding: 30px; */
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    color: black;
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap-reverse;
+    justify-content: space-between;
+    background-size: cover;
+    /* flex-direction: row; */
+  }
+  
+  img{
+    /* width:35rem; */
+    border-radius: 40px;
+  }
+  
+  .div1a{
+    display: flex;
+    flex-direction: column;
+    padding: 32px;
+    /* margin: 10px; */
+    width: 40rem;
+    border-radius: 25px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  
+    /* border: 1px solid black; */
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+  
+  }
+  
+  
+  form {
+    display: flex;
+    margin: 10px;
+    padding: 20px;
+    flex-direction: column;  
+  
+  }
+  
+  label {
+    margin-bottom: 8px;
+    font-size: 20px;
+  }
+  
+  input {
+    padding: 12px;
+    width: 20rem;
+    margin-bottom: 25px;
+    color: black;
+    background-color: white;
+    border: 0;
+    border-bottom: 2px solid rgb(156, 156, 156);
+  }
+  
+  button {
+    padding: 10px;
+    background-color: black;
+  
+    color: #fff;
+    border: 1px solid black;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  .signup{
+    background-color: white;
+    color: black;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid black;
+    cursor: pointer;
+  
+  }
+  .signup:hover {
+    background-color: rgb(29, 29, 141);
+    color: white;
+    
+  }
+  
+  /* Style for the login button on hover */
+  button:hover {
+    background-color: rgb(226, 102, 164);
+  }
+  
+  

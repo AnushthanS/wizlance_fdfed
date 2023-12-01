@@ -1,0 +1,85 @@
+.div1 {
+    max-width: 60vw;
+    /* min-width: 400px; */
+    margin: 10vw;
+    /* width: ; */
+    padding: 30px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    color: black;
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    /* flex-direction: row; */
+  }
+  
+  img{
+    width:30rem;
+    border-radius: 40px;
+  }
+  
+  .div1a{
+    padding: 40px;
+    margin: 10px;
+  }
+  
+  .div1b{
+    display: flex;
+    flex-direction: column;
+    /* width: 600px; */
+  }
+  
+  form {
+    display: flex;
+    margin: 10px;
+    padding: 20px;
+    flex-direction: column;  
+  
+  }
+  
+  label {
+    margin-bottom: 8px;
+    font-size: 20px;
+  }
+  
+  input {
+    padding: 12px;
+    margin-bottom: 16px;
+    color: black;
+    background-color: white;
+    border: 0;
+    border-bottom: 2px solid rgb(156, 156, 156);
+  }
+  
+  button {
+    padding: 10px;
+    background-color: black;
+  
+    color: #fff;
+    border: 1px solid black;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  .signup{
+    background-color: white;
+    color: black;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid black;
+    cursor: pointer;
+  
+  }
+  .signup:hover {
+    background-color: rgb(29, 29, 141);
+    color: white;
+    
+  }
+  
+  /* Style for the login button on hover */
+  button:hover {
+    background-color: rgb(226, 102, 164);
+  }
+  
+  
