@@ -10,8 +10,8 @@ const categorySchema = new Schema({
   imageUrl: String,
   subCategories: [
     {
-      name: String,
-      imageUrl: String,
+      type: Schema.Types.ObjectId,
+      ref: "SubCategory",
     },
   ],
 });

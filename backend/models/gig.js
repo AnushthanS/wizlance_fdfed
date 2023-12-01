@@ -11,21 +11,23 @@ const gigSchema = new Schema({
     type: Number,
     required: true,
   },
-  freelancerEmail: {
+  imageUrl: {
+    type: String,
+  },
+  description: {
     type: String,
     required: true,
   },
-  category: {
-    type: String,
+  subcategory: {
+    type: Schema.Types.ObjectId,
+    ref: "SubCategory",
     required: true,
   },
-  subCategory: {
-    type: String,
+  freelancer: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
     required: true,
   },
-
-  imageUrl: String,
-  description: String,
 });
 
 module.exports = mongoose.model("Gig", gigSchema);
