@@ -5,23 +5,36 @@ const Messages = require("../models/messages");
 
 const nodemailer = require("nodemailer");
 
-exports.displayUsers = (req, res) => {
-  User.find({}, { password: 0 }).then((users) => {
-    return res.render("pages/display-details", { users });
-  });
+// exports.displayUsers = (req, res) => {
+//   User.find({}, { password: 0 }).then((users) => {
+//     return res.render("pages/display-details", { users });
+//   });
+// };
+
+// user api
+exports.displayUsers = async (req, res) => {
+    const users = await  User.find({}, { password: 0 });
+    res.status(200).json({
+      users,
+    });
 };
 
+
+// repeated api
 exports.displayCategories = (req, res) => {
   Category.find({}).then((categories) => {
     return res.render("pages/display-categories", { categories });
   });
 };
 
-exports.displayGigs = (req, res) => {
-  Gig.find({}).then((gigs) => {
-    return res.render("pages/display-gigs", { gigs });
+
+exports.displayGigs = async (req, res) => {
+  const gig = await Gig.find({})
+   res.status(200).json({
+    gig
   });
 };
+
 
 exports.deleteFromUser = (req, res) => {
   const requiredMail = req.body.deleteFromEmail;
@@ -84,11 +97,15 @@ exports.deleteSubCategory = (req, res) => {
   });
 };
 
+
+
 exports.displayMessages = (req, res) => {
   Messages.find({}).then((messages) => {
     return res.render("pages/display-messages", { messages });
   });
 }
+
+
 exports.getDashboard = (req, res, next) => {
   res.render("pages/admin-dashboard", { admin: req.session.user });
 

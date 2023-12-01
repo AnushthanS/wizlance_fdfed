@@ -4,10 +4,12 @@ const shopController = require("../controllers/shop");
 
 const router = express.Router();
 
-router.get("/", shopController.getLandingPage);
-router.get("/mainpage", shopController.getMainPage);
-router.get("/mainpage/:category", shopController.getCategories);
-router.get("/:pages/:categories", shopController.getSubCategories);
+//api
+router.get("/categories", shopController.getCategories);
+router.post("/subcategories", shopController.getSubCategories);
+router.post("/gigs", shopController.getGigs);
+router.post("/gig/details", shopController.getGigDetails);
+
 router.get("/:pages/:categories/:gig", shopController.getGigs);
 router.get("/:pages/:categories/:gig/payment", shopController.getPayment);
 router.post("/place-order", shopController.orderplaced);
