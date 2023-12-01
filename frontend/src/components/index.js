@@ -1,5 +1,5 @@
-import Navbar from "./Navbar";
+import Landing from "./landing"
 
 export {
-    Navbar,
+    Landing,
 }

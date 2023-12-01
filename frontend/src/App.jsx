@@ -1,12 +1,10 @@
 import { BrowserRouter } from 'react-router-dom';
-import { Navbar } from './components';
+import { Landing } from './components';
 
 const App = () => {
   return(
     <BrowserRouter>
-      <div className='relative z-0'>
-        <Navbar />
-      </div>
+      <Landing />
     </BrowserRouter>
   );
 }
