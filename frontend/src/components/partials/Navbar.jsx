@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { navLinks } from "../../constants";
 import { logo, close, menu } from "../../assets";
 
-const Navbar = () => {
+const Navbar = ({showlink}) => {
     const [active, setActive] = useState('');
     const [toggle, setToggle] = useState(false);
     return (
@@ -23,7 +23,7 @@ const Navbar = () => {
                     <img src={logo} alt="logo" className="w-[180px] h-auto object-contain" />
                 </Link>
 
-                <ul className="list-none sm:flex hidden flex-row gap-10 ">
+                { showlink && <ul className="list-none sm:flex hidden flex-row gap-10 ">
                     {navLinks.map(
                         (link) => (
                             <li
@@ -33,11 +33,11 @@ const Navbar = () => {
                                     setActive(link.title);
                                 }}
                             >
-                                <a href={`#${link.id}`}>{link.title}</a>
+                                <Link to={`${link.id}`}>{link.title}</Link>
                             </li>
                         )
                     )}
-                </ul>
+                </ul>}
 
 
                 <div className='flex sm:hidden flex-1 justify-end items-center text-[18px] text-white cursor-pointer'>

@@ -1,8 +1,10 @@
-import './assets/SignUp.css'
-import login2 from './assets/images/login2.jpg'
+import '../assets/SignUp.css'
+import login2 from '../assets/images/login2.jpg'
 
 
 import React, { useState } from 'react';
+import { Footer, Navbar } from './partials';
+import { Link } from 'react-router-dom';
 
 // Functional component for the login page
 const SignUpPage = () => {
@@ -33,6 +35,9 @@ const SignUpPage = () => {
   };
 
   return (
+    <>
+    <Navbar showlink={false}/>
+
     <div className='div1' style={{backgroundImage: `url(${login2})`}} >
       
       <div className='div1a' >
@@ -86,13 +91,18 @@ const SignUpPage = () => {
         </form>
         <br/>
         {/* <p>-------OR-------</p> */}
-        <p>Are you new here?
-        <button type="submit" className='signup'>SignUp</button>
+        <p> Already have an account?
+        <button type="submit" className='signup'>
+         <Link to='/login'>Login</Link> 
+        </button>
         </p>
       </div>
 
 
     </div>
+
+    <Footer />
+    </>
   );
 };
 

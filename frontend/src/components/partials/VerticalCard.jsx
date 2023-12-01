@@ -4,6 +4,7 @@ import 'react-vertical-timeline-component/style.min.css';
 import { temp_icon } from "../../assets";
 
 const CustomCard = ({ array, isAlternate }) => (
+    
     <VerticalTimelineElement
         className={isAlternate ? 'ml-auto' : ''}
         contentStyle={{
