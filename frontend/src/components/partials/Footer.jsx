@@ -1,6 +1,6 @@
 const Footer = () => {
     return (
-        <div className="mt-12 m-6 rounded-lg bg-[#0f0529] py-2 text-white">
+        <div className="mt-12 w-full bg-[#0f0529] py-2 text-white">
           <div className="flex justify-start">
             <ul className="categories mx-4 mb-2">
               <span className="font-bold">Categories</span>

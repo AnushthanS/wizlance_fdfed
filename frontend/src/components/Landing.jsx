@@ -27,7 +27,7 @@ const Landing = () => {
                 <Hero />
             </section>
 
-            <section className="px-6 flex flex-col items-start my-4">
+            <section className="px-6 flex flex-col items-start my-12">
 
                 <h2 className="my-6 text-bold text-3xl ">Explore our trending professional services</h2>
 
@@ -36,8 +36,9 @@ const Landing = () => {
                 <div className="flex flex-wrap flex-col md:flex-row gap-4 w-full">
                     {cards}
                 </div>
+
             </section>
-            
+            <div className="h-4 w-full"></div>
             <VerticalCard />
 
             <Footer />

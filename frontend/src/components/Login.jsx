@@ -1,11 +1,10 @@
-
-import './assets/Login.css'
-import login2 from './assets/images/login2.jpg'
+import '../assets/Login.css'
+import login2 from '../assets/images/login2.jpg'
 
 
 import React, { useState } from 'react';
 
-const LoginPage = () => {
+const Login = () => {
   // State variables to store email and password
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -70,4 +69,4 @@ const LoginPage = () => {
 };
 
 // Export the component for use in other parts of the application
-export default LoginPage;
+export default Login;

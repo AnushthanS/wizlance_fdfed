@@ -1,11 +1,11 @@
-import './assets/SignUp.css'
-import login2 from './assets/images/login2.jpg'
+import '../assets/SignUp.css'
+import login2 from '../assets/images/login2.jpg'
 
 
 import React, { useState } from 'react';
 
 // Functional component for the login page
-const SignUpPage = () => {
+const SignUp = () => {
   // State variables to store email and password
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
@@ -97,4 +97,4 @@ const SignUpPage = () => {
 };
 
 // Export the component for use in other parts of the application
-export default SignUpPage;
+export default SignUp;
