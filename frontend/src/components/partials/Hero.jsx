@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Gradient } from "whatamesh";
 
 const Hero = () => {
@@ -16,7 +17,11 @@ const Hero = () => {
 
         <div className="relative sm:w-1/2 sm:top-[80px] text-black text-[22px] md:text-[28px] font-extralight ml-4 mb-2">
           <p className="w-full">With an ever-growing community of freelancers worldwide, offer services or enlist them in the easiest possible way.</p>
-          <button className="mt-4 border-2 border-collapse rounded-lg p-2 shadow-md bg-gray-800 text-white hover:bg-gray-700">Get Started</button>
+          <button className="mt-4 border-2 border-collapse rounded-lg p-2 shadow-md bg-gray-800 text-white hover:bg-gray-700">
+            <Link to="/login">
+            Get Started
+              </Link>
+            </button>
         </div>
 
       </div>
