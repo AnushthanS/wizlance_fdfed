@@ -7,7 +7,7 @@ import { Footer, Navbar } from './partials';
 import { Link } from 'react-router-dom';
 
 // Functional component for the login page
-const SignUpPage = () => {
+const SignUp = () => {
   // State variables to store email and password
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
@@ -107,4 +107,4 @@ const SignUpPage = () => {
 };
 
 // Export the component for use in other parts of the application
-export default SignUpPage;
+export default SignUp;

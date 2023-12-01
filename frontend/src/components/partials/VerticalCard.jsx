@@ -1,10 +1,9 @@
 import { VerticalTimeline, VerticalTimelineElement } from "react-vertical-timeline-component";
 
 import 'react-vertical-timeline-component/style.min.css';
-import { temp_icon } from "../../assets";
+import { s1_icon, s2_icon, s3_icon, s4_icon } from "../../assets/index";
 
-const CustomCard = ({ array, isAlternate }) => (
-    
+const CustomCard = ({ array, isAlternate, cardIcon }) => (
     <VerticalTimelineElement
         className={isAlternate ? 'ml-auto' : ''}
         contentStyle={{
@@ -17,7 +16,7 @@ const CustomCard = ({ array, isAlternate }) => (
         iconStyle={{ background: '#232631' }}
         icon={
             <div className="flex justify-center items-center w-full h-full">
-                <img src={temp_icon} alt={array.title} className="w-[70%] h-[70%] object-contain text-white" />
+                <img src={cardIcon} alt={array.title} className="w-[70%] h-[70%] object-contain text-white" />
             </div>
         }
     >
@@ -40,22 +39,22 @@ const VerticalCard = () => {
                         <CustomCard array={{
                             title: 'Step 1',
                             content: 'Create an account on WizLance.',
-                        }} isAlternate={false} />
+                        }} isAlternate={false} cardIcon={s1_icon} />
 
                         <CustomCard array={{
                             title: 'Step 2',
                             content: 'Signup as a freelancer.',
-                        }} isAlternate={true} />
+                        }} isAlternate={true} cardIcon={s2_icon} />
 
                         <CustomCard array={{
                             title: 'Step 3',
                             content: 'Choose your category and upload your gig.',
-                        }} isAlternate={false} />
+                        }} isAlternate={false} cardIcon={s3_icon} />
 
                         <CustomCard array={{
                             title: 'FINISH',
                             content: 'Congratulations! You\'re now a freelancer. You can upload, edit and delete gig content.',
-                        }} isAlternate={true} />
+                        }} isAlternate={true} cardIcon={s4_icon} />
                     </VerticalTimeline>
                 </div>
             </div>

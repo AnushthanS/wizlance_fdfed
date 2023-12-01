@@ -33,7 +33,7 @@ const Navbar = ({showlink}) => {
                                     setActive(link.title);
                                 }}
                             >
-                                <Link to={`${link.id}`}>{link.title}</Link>
+                                <Link to={`/${link.id}`}>{link.title}</Link>
                             </li>
                         )
                     )}
