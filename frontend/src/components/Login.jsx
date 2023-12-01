@@ -3,6 +3,8 @@ import login2 from '../assets/images/login2.jpg'
 
 
 import React, { useState } from 'react';
+import { Footer, Navbar } from './partials';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   // State variables to store email and password
@@ -12,7 +14,7 @@ const Login = () => {
   // Function to handle form submission
   const handleLogin = (e) => {
     e.preventDefault();
-
+    
     // Perform authentication logic here (e.g., send credentials to a server)
 
     // For simplicity, let's just log the credentials for now
@@ -26,6 +28,8 @@ const Login = () => {
   };
 
   return (
+    <>
+    <Navbar showlink={false}/>
     <div className='div1 '>
       <div className='div1a'>
         <h1>Sign In</h1>
@@ -56,7 +60,9 @@ const Login = () => {
         <br/>
         {/* <p>-------OR-------</p> */}
         Are you new here?
-        <button type="submit" className='signup'>SignUp</button>
+        <button type="submit" className='signup'>
+        <Link to="/signup">SignUp</Link>
+          </button>
 
       </div>
 
@@ -65,6 +71,9 @@ const Login = () => {
       </div>
 
     </div>
+
+    <Footer />
+    </>
   );
 };
 
