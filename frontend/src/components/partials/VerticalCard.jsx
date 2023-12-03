@@ -13,7 +13,7 @@ const CustomCard = ({ array, isAlternate, cardIcon }) => (
         contentArrowStyle={{
             borderRight: '7px solid #232631'
         }}
-        iconStyle={{ background: '#232631' }}
+        iconStyle={{ background: 'white' }}
         icon={
             <div className="flex justify-center items-center w-full h-full">
                 <img src={cardIcon} alt={array.title} className="w-[70%] h-[70%] object-contain text-white" />

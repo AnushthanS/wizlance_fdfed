@@ -3,7 +3,7 @@ const path = require("path");
 const express = require("express");
 const mongoose = require("mongoose");
 const multer = require("multer");
-const cors = require('cors'); //import cors for frontend and backend link
+const cors = require('cors');
 
 const mainRoutes = require("./routes/main");
 const authRoutes = require("./routes/auth");
@@ -12,6 +12,7 @@ const adminRoutes = require("./routes/admin");
 const freelancerRoutes = require("./routes/freelancer");
 
 const app = express();
+app.use(cors());
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
@@ -41,7 +42,6 @@ app.use(express.json());
 app.use(multer({ storage: fileStorage, fileFilter }).single("image"));
 app.use("/images", express.static(path.join(__dirname, "images")));
 
-app.use(cors()); //cors integration
 
 // app.use((req, res, next) => {
 //   if (req.session.user) {

@@ -6,22 +6,16 @@ import { Footer, Navbar } from './partials';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
-  // State variables to store email and password
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  // Function to handle form submission
   const handleLogin = (e) => {
     e.preventDefault();
-    
-    // Perform authentication logic here (e.g., send credentials to a server)
 
-    // For simplicity, let's just log the credentials for now
     console.log('Email:', email);
     console.log('Password:', password);
 
-    // You can redirect the user to another page after successful login
-    // For now, let's just clear the input fields
     setEmail('');
     setPassword('');
   };
@@ -80,5 +74,4 @@ const Login = () => {
   );
 };
 
-// Export the component for use in other parts of the application
 export default Login;

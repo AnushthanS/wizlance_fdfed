@@ -5,16 +5,16 @@ const otherFuncController = require("../controllers/otherFunc");
 
 const router = express.Router();
 
-router.get("/dashboard", dashboardController.getDashboard);
-router.get("/seller-overview", dashboardController.getSellerForm);
-router.post("/signupFreelancer", dashboardController.postSignupFreelancer);
+router.get("/api/dashboard", dashboardController.getDashboard);
+router.get("/api/seller-overview", dashboardController.getSellerForm);
+router.post("/api/signupFreelancer", dashboardController.postSignupFreelancer);
 
-router.post("/search", otherFuncController.postSearchCategories);
+router.post("/api/search", otherFuncController.postSearchCategories);
 router.post(
-  "/:category/search-gig",
+  "/api/:category/search-gig",
   otherFuncController.postSearchSubCategories
 );
 
-router.get("/contact", otherFuncController.getContactForm);
+router.get("/api/contact", otherFuncController.getContactForm);
 
 module.exports = router;

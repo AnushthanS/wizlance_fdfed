@@ -1,5 +1,4 @@
 import { BrowserRouter , Routes , Route} from 'react-router-dom';
-import { Landing, Login, SignUp, AdminPage } from './components';
 import {
   Dashboard,
   IndexContent,
@@ -8,6 +7,8 @@ import {
   ProfileContent,
   SellerForm,
 } from "./components/Dashboard";
+import { Landing, Login, SignUp, MainPage, Contact, AdminPage } from './components';
+
 
 const App = () => {
   return (
@@ -16,15 +17,15 @@ const App = () => {
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/admin" element={<AdminPage />} />
-
         <Route path="/dashboard" element={<Dashboard />}>
           <Route index element={<IndexContent />} />
           <Route path="orders" element={<OrdersContent />} />
           <Route path="projects" element={<ProjectsContent />} />
           <Route path="profile" element={<ProfileContent />} />
-        </Route>
         <Route path="/addgig" element={<SellerForm />} />
+        <Route path="/admin" element={< AdminPage/>} />
+        <Route path='/mainpage' element={<MainPage />} />
+        <Route path='/contact' element={<Contact />} />
       </Routes>
     </BrowserRouter>
   );

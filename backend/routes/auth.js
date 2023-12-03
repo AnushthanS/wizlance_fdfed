@@ -7,7 +7,7 @@ const User = require("../models/user");
 const router = express.Router();
 
 router.put(
-  "/signup",
+  "/api/signup",
   [
     body("email")
       .isEmail()
@@ -27,6 +27,6 @@ router.put(
   authController.signup
 );
 
-router.post("/login", authController.login);
+router.post("/api/login", authController.login);
 
 module.exports = router;
