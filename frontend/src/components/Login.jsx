@@ -1,4 +1,3 @@
-import '../assets/Login.css'
 import login2 from '../assets/images/login2.jpg'
 
 
@@ -24,12 +23,13 @@ const Login = () => {
   return (
     <>
     <Navbar showlink={false}/>
-    <div className='div1 '>
-      <div className='div1a'>
-        <h1>Sign In</h1>
+    <div className=' my-20 m-auto max-w-6xl flex flex-wrap justify-around p-[10px] border-[#ccc] border-2 rounded-[25px] shadow-[0_0px_20px_rgba(0,0,0,0.1)] text-black w-[70vw]'>
+
+      <div className=' flex-col flex-wrap py-10 m-[40px]'>
+        <h1 className=' text-3xl font-semibold mb-2'>Sign In</h1>
         <p>Enter your credentials for logging into your account</p>
-        <form onSubmit={handleLogin}>
-        <label>
+        <form className=' flex m-[10px] p-[20px] flex-col' onSubmit={handleLogin}>
+        <label className=' mb-[8px] text-[20px]'>
           Email
           </label>
           <input
@@ -37,9 +37,11 @@ const Login = () => {
             placeholder='Enter email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
+            className=' p-[12px] mb-[16px] text-black border-b-2 border-gray-400'
             />
         <br/>
-        <label>
+        <label className=' mb-[8px] text-[20px]'>
           Password
           </label>
           <input
@@ -47,21 +49,22 @@ const Login = () => {
             placeholder='Enter password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
+            className=' p-[12px] mb-[16px] text-black border-b-2 border-gray-400'
             />
         <br />
-        <button type="submit">Login</button>
+        <button className='p-[10px] bg-black text-[#fff] rounded-[20px] hover:bg-pink-500' type="submit">Login</button>
         </form>
         <br/>
-        {/* <p>-------OR-------</p> */}
-        Are you new here?
-        <button type="submit" className='signup'>
+        <p>Are you new here?
+        <button type="submit" className='signup p-[10px] bg-white border-black border rounded-[12px] m-3'>
         <Link to="/signup">SignUp</Link>
           </button>
-
+        </p>
       </div>
 
-      <div className='div1b'>
-      <img src={login2}></img>
+      <div className='div1b w-[32rem] p-6 rounded-xl'>
+      <img className='rounded-2xl' src={login2}></img>
       </div>
 
     </div>
