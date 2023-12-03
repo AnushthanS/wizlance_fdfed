@@ -16,7 +16,7 @@ export {
     VerticalCard,
     Footer,
     AdminMail,
-    MainCarousel
+    MainCarousel,
     Dashboard,
     Users,
     Gigs,
