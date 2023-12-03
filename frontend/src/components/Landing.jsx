@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Navbar, Hero, VerticalCard, Footer } from "./partials/index";
+import { Navbar, Hero, VerticalCard, Footer, AdminMail } from "./partials/index";
 
 
 const Landing = () => {
@@ -69,6 +69,9 @@ const Landing = () => {
 
             <Footer />
         </>
+        // <>
+        // <AdminMail />
+        // </>
     );
 }
 

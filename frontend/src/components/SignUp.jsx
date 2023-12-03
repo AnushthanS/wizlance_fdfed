@@ -1,4 +1,4 @@
-import '../assets/SignUp.css'
+// import '../assets/SignUp.css'
 import login2 from '../assets/images/login2.jpg'
 
 
@@ -38,13 +38,14 @@ const SignUp = () => {
     <>
     <Navbar showlink={false}/>
 
-    <div className='div1' style={{backgroundImage: `url(${login2})`}} >
+    <div className='div1 mt-10 m-auto max-w-6xl w-[70vw] flex flex-wrap justify-end border-[#ccc] border-2 rounded-[25px] shadow-[0_0px_20px_rgba(0,0,0,0.1)] text-black bg-cover' style={{backgroundImage: `url(${login2})`}}>
       
-      <div className='div1a' >
-        <h1>Create Account</h1>
+      <div className='div1a rounded-[25px] p-14 px-32 bg-white border-[#ccc] border-2' >
+        <h1 className=' font-semibold text-3xl'>Create Account</h1>
         <p>Join the community of freelancers today!</p>
-        <form onSubmit={handleLogin}>
-        <label>
+
+        <form className='flex m-[8px] p-[40px] flex-col' onSubmit={handleLogin}>
+        <label className='mb-[8px] text-[20px]'>
           First name
           </label>
           <input
@@ -52,10 +53,11 @@ const SignUp = () => {
             placeholder='Enter first name'
             value={fname}
             onChange={(e) => setFname(e.target.value)}
+            className=' p-[18px] mb-[16px] text-black border-b-2 border-gray-400'
             />
         <br/>
 
-        <label>
+        <label className='mb-[8px] text-[20px]'>
           Last name
           </label>
           <input
@@ -63,10 +65,11 @@ const SignUp = () => {
             placeholder='Enter last name'
             value={lname}
             onChange={(e) => setLname(e.target.value)}
+            className=' p-[18px] mb-[16px] text-black border-b-2 border-gray-400'
             />
         <br/>
 
-        <label>
+        <label className='mb-[8px] text-[20px]'>
           Email
           </label>
           <input
@@ -74,10 +77,11 @@ const SignUp = () => {
             placeholder='Enter email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            className=' p-[18px] mb-[16px] text-black border-b-2 border-gray-400'
             />
         <br/>
 
-        <label>
+        <label className='mb-[8px] text-[20px]'>
           Password
           </label>
           <input
@@ -85,14 +89,15 @@ const SignUp = () => {
             placeholder='Enter password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            className=' p-[18px] mb-[16px] text-black border-b-2 border-gray-400'
             />
         <br />
-        <button type="submit">Sign Up</button>
+        <button type="submit" className='p-[10px] bg-black text-[#fff] rounded-[20px] hover:bg-pink-500'>Sign Up</button>
         </form>
         <br/>
         {/* <p>-------OR-------</p> */}
         <p> Already have an account?
-        <button type="submit" className='signup'>
+        <button type="submit" className='signup p-[10px] bg-white border-black border rounded-[12px] m-3'>
          <Link to='/login'>Login</Link> 
         </button>
         </p>
