@@ -6,28 +6,21 @@ import React, { useState } from 'react';
 import { Footer, Navbar } from './partials';
 import { Link } from 'react-router-dom';
 
-// Functional component for the login page
 const SignUp = () => {
-  // State variables to store email and password
+
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  // Function to handle form submission
   const handleLogin = (e) => {
     e.preventDefault();
 
-    // Perform authentication logic here (e.g., send credentials to a server)
-
-    // For simplicity, let's just log the credentials for now
     console.log('Fname:', fname);
     console.log('Lname:', lname);
     console.log('Email:', email);
     console.log('Password:', password);
 
-    // You can redirect the user to another page after successful login
-    // For now, let's just clear the input fields
     setFname('');
     setLname('');
     setEmail('');
@@ -106,5 +99,4 @@ const SignUp = () => {
   );
 };
 
-// Export the component for use in other parts of the application
 export default SignUp;
