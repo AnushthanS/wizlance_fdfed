@@ -11,5 +11,5 @@ export {
     Login,
     SignUp,
     MainPage,
-    Contact
+    Contact,
 }
