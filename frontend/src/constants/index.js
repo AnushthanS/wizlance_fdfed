@@ -44,7 +44,35 @@ const carouselLinks = [
     }
 ]
 
+const categories = [
+    {
+        name: 'Category 1',
+        imageUrl: 'url1',
+    }
+];
+
+const gigs = [
+    {
+        name: 'gig1',
+        price: 'price1',
+        imageUrl: 'image1',
+        description: 'gig1 description',
+        category: categories[0],
+    }
+];
+
+const subCategories = [
+    {
+        name: 'sub1',
+        imageUrl: 'url11',
+        category: categories[0],
+    }
+];
+
 export {
     navLinks,
-    carouselLinks
+    carouselLinks,
+    categories,
+    subCategories,
+    gigs
 }

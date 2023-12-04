@@ -4,6 +4,8 @@ import Login from "./Login";
 import SignUp from "./SignUp";
 import MainPage from "./MainPage";
 import Contact from "./Contact";
+import Payment from "./Payment";
+import ResultTemplate from "./ResultTemplate";
 
 export {
     Landing,
@@ -12,4 +14,6 @@ export {
     SignUp,
     MainPage,
     Contact,
+    Payment,
+    ResultTemplate
 }
