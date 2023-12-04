@@ -1,7 +1,6 @@
 const { validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const { v4 } = require("uuid");
 
 const User = require("../models/user");
 
@@ -47,6 +46,9 @@ exports.login = async (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
 
+  console.log("Email = ", email);
+  console.log("Password = ", password);
+
   try {
     const user = await User.findOne({ email });
     if (!user) {
@@ -66,14 +68,16 @@ exports.login = async (req, res, next) => {
         userId: user._id,
         firstName: user.firstName,
       },
-      v4(),
+      "wizlance",
       { expiresIn: "7d" }
     );
 
+    console.log(user.firstName);
+
     res.status(200).json({
-      message: "Logged in successfully",
-      token
-    })
+      token,
+      user,
+    });
   } catch (error) {
     if (!error.statusCode) {
       error.statusCode = 500;

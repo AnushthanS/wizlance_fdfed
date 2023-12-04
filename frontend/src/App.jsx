@@ -7,8 +7,15 @@ import {
   ProfileContent,
   SellerForm,
 } from "./components/Dashboard";
-import { Landing, Login, SignUp, MainPage, Contact, AdminPage } from './components';
-
+import {
+  Landing,
+  Login,
+  SignUp,
+  MainPage,
+  Contact,
+  AdminPage,
+  SubCategories,
+} from "./components";
 
 const App = () => {
   return (
@@ -22,10 +29,12 @@ const App = () => {
           <Route path="orders" element={<OrdersContent />} />
           <Route path="projects" element={<ProjectsContent />} />
           <Route path="profile" element={<ProfileContent />} />
+        </Route>
         <Route path="/addgig" element={<SellerForm />} />
-        <Route path="/admin" element={< AdminPage/>} />
-        <Route path='/mainpage' element={<MainPage />} />
-        <Route path='/contact' element={<Contact />} />
+        <Route path="/admin" element={<AdminPage />} />
+        <Route path="/mainpage" element={<MainPage />} />
+        <Route path="/subcategories/:categoryId" element={<SubCategories />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </BrowserRouter>
   );

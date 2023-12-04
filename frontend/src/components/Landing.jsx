@@ -14,10 +14,13 @@ const Landing = () => {
               if (Array.isArray(response.data.categories)) {
                 setCategories(response.data.categories);
               } else {
-                console.error('Fetched data is not an array:', data.categories);
+                console.error(
+                  "Fetched data is not an array:",
+                  response.data.categories
+                );
               }
             } catch (error) {
-              console.error('Error fetching categories:', error);
+              console.error('Error fetching categories:', error.message);
             }
         }
         fetchCategories();
