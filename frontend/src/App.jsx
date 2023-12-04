@@ -7,7 +7,7 @@ import {
   ProfileContent,
   SellerForm,
 } from "./components/Dashboard";
-import { Landing, Login, SignUp, MainPage, Contact, AdminPage } from './components';
+import { Landing, Login, SignUp, MainPage, Contact, AdminPage, Payment, ProfilePage } from './components';
 
 
 const App = () => {
@@ -27,6 +27,10 @@ const App = () => {
         <Route path="/admin" element={< AdminPage/>} />
         <Route path='/mainpage' element={<MainPage />} />
         <Route path='/contact' element={<Contact />} />
+        <Route path='/payment' element={<Payment />} />
+        <Route path='/profile' element={<ProfilePage />} />
+
+
       </Routes>
     </BrowserRouter>
   );
