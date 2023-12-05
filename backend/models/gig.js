@@ -18,7 +18,7 @@ const gigSchema = new Schema({
     type: String,
     required: true,
   },
-  subcategory: {
+  subCategoryId: {
     type: Schema.Types.ObjectId,
     ref: "SubCategory",
     required: true,

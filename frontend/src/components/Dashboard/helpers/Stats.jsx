@@ -8,7 +8,7 @@ import {
 
 const Stats = () => {
   return (
-    <div className=" flex h-64 flex-wrap gap-8 rounded-lg py-9 px-7">
+    <div className=" flex h-64 flex-wrap gap-5 rounded-lg py-9 px-7">
       <StatCard
         statname="Ratings"
         statvalue="4.9"

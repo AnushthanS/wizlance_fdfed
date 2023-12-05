@@ -4,20 +4,22 @@ import {
   faBagShopping,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
-
+import { logo } from "../../assets";
 import ProfileCard from "./helpers/ProfileCard";
 import SidebarComp from "./helpers/SidebarComp";
 import { Link } from "react-router-dom";
 
-const Sidebar = () => {
+const Sidebar = ({user}) => {
   return (
-    <div className="bg-blue-950 text-gray-100 w-64 h-auto sticky">
+    <div className="bg-blue-950 text-gray-100 w-auto h-auto sticky">
       <div className="p-4 mb-3">
         <Link to="/mainpage">
-          <h1 className="text-2xl font-semibold">W I Z L A N C E</h1>
+          {/* <h1 className="text-xl font-semibold">W I Z L A N C E</h1>
+           */}
+           <img src={logo} alt="logo" className="w-[160px] h-auto object-contain" />
         </Link>
       </div>
-      <ProfileCard />
+      <ProfileCard user={user} />
       <nav className="mt-10">
         <SidebarComp to="/dashboard" tabName="Dashboard" tabIcon={faBullseye} />
         <SidebarComp

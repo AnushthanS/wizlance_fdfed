@@ -20,8 +20,9 @@ const IndexContent = () => {
   return (
     <>
       <Stats />
+
       <div className="flex w-full flex-1 p-6 gap-6">
-        <div className="h-full w-full rounded-lg relative shadow-lg bg-white">
+        <div className="h-fit w-full rounded-lg relative shadow-lg bg-white">
           <div
             className={`from-pink-800 to-pink-500 bg-gradient-to-tr h-[5.5rem] w-[5.5rem] rounded-sm absolute left-4 -top-3 flex items-center justify-center shadow-lg`}
           >
@@ -31,7 +32,7 @@ const IndexContent = () => {
             <Link to="/dashboard/projects">
               <p className="text-3xl font-bold pl-32 py-9">Active projects</p>
             </Link>
-            <div className="flex justify-center py-3 h-48 overflow-auto">
+            <div className="flex justify-center py-3 h-[280px] overflow-auto">
               <Table headings={headings} rows={rows} />
             </div>
           </div>
@@ -56,6 +57,7 @@ const IndexContent = () => {
           </div>
         </div>
       </div>
+      
     </>
   );
 };

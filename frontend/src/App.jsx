@@ -28,9 +28,9 @@ const App = () => {
         <Route path='/mainpage' element={<MainPage />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/payment' element={<Payment />} />
-        <Route path='/profile' element={<ProfilePage />} />
-        <Route path='/result' element={<ResultTemplate />} />
+        <Route path='/gigdetails/:gigId' element={<ProfilePage />} />
         <Route path="/subcategories/:categoryId" element={<SubCategories />} />
+        <Route path="/gigs/:subcategoryId" element={<ResultTemplate />} />
       </Routes>
     </BrowserRouter>
   );
