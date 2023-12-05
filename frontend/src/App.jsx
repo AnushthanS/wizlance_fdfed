@@ -7,7 +7,7 @@ import {
   ProfileContent,
   SellerForm,
 } from "./components/Dashboard";
-import { Landing, Login, SignUp, MainPage, Contact, AdminPage, Payment, ResultTemplate, SubCategories } from './components';
+import { Landing, Login, SignUp, MainPage, Contact, AdminPage, Payment, ResultTemplate, SubCategories, ProfilePage } from './components';
 
 
 const App = () => {
@@ -28,6 +28,7 @@ const App = () => {
         <Route path='/mainpage' element={<MainPage />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/payment' element={<Payment />} />
+        <Route path='/profile' element={<ProfilePage />} />
         <Route path='/result' element={<ResultTemplate />} />
         <Route path="/subcategories/:categoryId" element={<SubCategories />} />
       </Routes>

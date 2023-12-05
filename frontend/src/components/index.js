@@ -7,7 +7,7 @@ import Contact from "./Contact";
 import Payment from "./Payment";
 import ResultTemplate from "./ResultTemplate";
 import SubCategories from "./SubCategories";
-
+import ProfilePage from "./ProfilePage";
 export {
     Landing,
     AdminPage,
@@ -17,5 +17,6 @@ export {
     Contact,
     Payment,
     ResultTemplate,
-    SubCategories
+    SubCategories,
+    ProfilePage
 }

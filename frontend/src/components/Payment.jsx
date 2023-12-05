@@ -1,37 +1,117 @@
+import React from "react";
+import { Navbar } from "./partials";
+
 const Payment = () => {
-    return (
-        <>
-            <div className="p-6 mt-2 flex flex-col flex-wrap flex-shrink">
-                <span className="sm:text-6xl text-4xl ">Secure Payment API</span>
-                <div className="border-2 border-red-800 w-[360px] md:w-[600px]  mb-[40px]"></div>
+  return (
+    <>
+      <header>
+        <Navbar />
+      </header>
 
-                <div className="border-2 border-gray-800 mt-6 rounded-lg self-center w-2/5 min-h-fit py-2">
-                    <form className='py-6 flex flex-col gap-8 items-center'>
-
-                        <label className='flex flex-col w-3/5'>
-                            <span className='text-black font-medium mb-4'>Cardholder's name</span>
-                            <input type="text" name='name' placeholder='Enter name here' className='rounded-lg py-4 px-6 bg-gray-100 font-medium placeholder:font-thin text-black outline-none border-none' />
-                        </label>
-
-                        <label className='flex flex-col w-3/5'>
-                            <span className='text-black font-medium mb-4'>Card Number</span>
-                            <input type="number" name='cardNum' placeholder='Card Number' className='rounded-lg py-4 px-6 bg-gray-100 font-medium placeholder:font-thin text-black outline-none border-none' />
-                        </label>
-
-                        <label className='flex flex-row w-3/5 justify-between flex-wrap'>
-                            <span className='text-black w-full font-medium mb-4'>Details</span>
-                            <input type="number" min={1} max={12} className="bg-gray-100 shadow-2xl px-2 py-4 w-1/5 rounded-lg min-h-fit" placeholder="MM" />
-                            <input type="number" min={2016} max={2026} className="bg-gray-100 shadow-2xl px-2 py-4 w-1/5 rounded-lg min-h-fit" placeholder="YY" />
-                            <input type="number" min={100} max={999} className="bg-gray-100 shadow-2xl px-2 py-4 w-2/5 rounded-lg min-h-fit" placeholder="CVV" />
-                        </label>
-
-                        <button type="submit" className='outline-none w-3/5 text-black shadow-md shadow-primary bg-gray-100 rounded-3xl py-3 px-8 font-bold'>
-                            Pay now
-                        </button>
-                    </form>
-                </div>
+      <div className="min-w-screen min-h-screen bg-gray-200 flex items-center justify-center px-5 pb-10 pt-16">
+        <div
+          className="w-full mx-auto rounded-lg bg-white shadow-lg p-5 text-gray-700"
+          style={{ maxWidth: "600px" }}
+        >
+          <div className="w-full pt-1 pb-5">
+            <div className="bg-indigo-500 text-white overflow-hidden rounded-full w-20 h-20 -mt-16 mx-auto shadow-lg flex justify-center items-center">
+              <i className="mdi mdi-credit-card-outline text-3xl"></i>
             </div>
-        </>
-    );
-}
+          </div>
+          <div className="mb-10">
+            <h1 className="text-center font-bold text-xl uppercase">
+              Secure payment info
+            </h1>
+          </div>
+          <div className="mb-3 flex -mx-2">
+            <div className="px-2">
+              <label
+                htmlFor="type1"
+                className="flex items-center cursor-pointer"
+              >
+                <img
+                  src="path/to/your/image1.png"
+                  alt="Type 1"
+                  className="h-8 ml-3"
+                />
+              </label>
+            </div>
+          </div>
+          <div className="mb-3">
+            <label className="font-bold text-sm mb-2 ml-1">Name on card</label>
+            <div>
+              <input
+                className="w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
+                placeholder="John Smith"
+                type="text"
+              />
+            </div>
+          </div>
+          <div className="mb-3">
+            <label className="font-bold text-sm mb-2 ml-1">Card number</label>
+            <div>
+              <input
+                className="w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
+                placeholder="0000 0000 0000 0000"
+                type="text"
+              />
+            </div>
+          </div>
+          <div className="mb-3 -mx-2 flex items-end">
+            <div className="px-2 w-1/2">
+              <label className="font-bold text-sm mb-2 ml-1">
+                Expiration date
+              </label>
+              <div>
+                <select className="form-select w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer">
+                  <option value="01">01 - January</option>
+                  <option value="02">02 - February</option>
+                  <option value="03">03 - March</option>
+                  <option value="03">04 - April</option>
+                  <option value="03">05 - May</option>
+                  <option value="03">06 - June</option>
+                  <option value="03">07 - July</option>
+                  <option value="03">08 - August</option>
+                  <option value="03">09 - September</option>
+                  <option value="03">10 - October</option>
+                  <option value="03">11 - November</option>
+                  <option value="03">12 - December</option>
+                </select>
+              </div>
+            </div>
+            <div className="px-2 w-1/2">
+              <select className="form-select w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer">
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+                <option value="2026">2026</option>
+                <option value="2027">2027</option>
+                <option value="2028">2028</option>
+              </select>
+            </div>
+          </div>
+          <div className="mb-10">
+            <label className="font-bold text-sm mb-2 ml-1">Security code</label>
+            <div>
+              <input
+                className="w-32 px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
+                placeholder="000"
+                type="text"
+              />
+            </div>
+          </div>
+          <div>
+            <button className="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">
+              <i className="mdi mdi-lock-outline mr-1"></i> PAY NOW
+            </button>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
 export default Payment;
