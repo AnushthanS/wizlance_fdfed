@@ -1,8 +1,16 @@
 import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import TopBar from "./TopBar";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const Dashboard = () => {
+  const user = useSelector((state) => state?.user?.user);
+
+  useEffect(() => {
+    console.log(user);
+  });
+
   return (
     <div className="h-screen w-screen flex">
       <Sidebar />

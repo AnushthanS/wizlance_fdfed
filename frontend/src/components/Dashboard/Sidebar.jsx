@@ -7,12 +7,15 @@ import {
 
 import ProfileCard from "./helpers/ProfileCard";
 import SidebarComp from "./helpers/SidebarComp";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   return (
     <div className="bg-blue-950 text-gray-100 w-64 h-auto sticky">
       <div className="p-4 mb-3">
-        <h1 className="text-2xl font-semibold">W I Z L A N C E</h1>
+        <Link to="/mainpage">
+          <h1 className="text-2xl font-semibold">W I Z L A N C E</h1>
+        </Link>
       </div>
       <ProfileCard />
       <nav className="mt-10">
