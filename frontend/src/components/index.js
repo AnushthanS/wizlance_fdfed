@@ -6,6 +6,7 @@ import MainPage from "./MainPage";
 import Contact from "./Contact";
 import Payment from "./Payment";
 import ResultTemplate from "./ResultTemplate";
+import SubCategories from "./SubCategories";
 
 export {
     Landing,
@@ -15,5 +16,6 @@ export {
     MainPage,
     Contact,
     Payment,
-    ResultTemplate
+    ResultTemplate,
+    SubCategories
 }

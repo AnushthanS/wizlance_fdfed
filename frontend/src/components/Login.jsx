@@ -1,23 +1,37 @@
 import login2 from '../assets/images/login2.jpg'
 
+import { useEffect, useState } from "react";
+import { Footer, Navbar } from "./partials";
+import { Link, useNavigate } from "react-router-dom";
 
-import React, { useState } from 'react';
-import { Footer, Navbar } from './partials';
-import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from "react-redux";
+import { fetchUser } from "../features/userSlice";
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.user);
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  // useEffect(() => {
+  //   console.log("user = ", user);
+  //   console.log(user.user);
+  //   if (user?.user === true) {
+  //     navigate("/mainpage");
+  //   }
+  // }, [user, navigate]);
 
   const handleLogin = (e) => {
     e.preventDefault();
 
-    console.log('Email:', email);
-    console.log('Password:', password);
+    dispatch(fetchUser({ email, password }));
 
-    setEmail('');
-    setPassword('');
+    navigate("/mainpage");
+
+    setEmail("");
+    setPassword("");
   };
 
   return (
