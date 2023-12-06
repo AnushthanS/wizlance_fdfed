@@ -712,6 +712,10 @@ video {
   margin: auto;
 }
 
+.m-16{
+  margin: 4rem;
+}
+
 .-mx-2{
   margin-left: -0.5rem;
   margin-right: -0.5rem;
@@ -951,10 +955,6 @@ video {
   height: 10rem;
 }
 
-.h-48{
-  height: 12rem;
-}
-
 .h-5{
   height: 1.25rem;
 }
@@ -977,6 +977,10 @@ video {
 
 .h-\[200px\]{
   height: 200px;
+}
+
+.h-\[280px\]{
+  height: 280px;
 }
 
 .h-\[28px\]{
@@ -1026,34 +1030,6 @@ video {
 
 .h-screen{
   height: 100vh;
-}
-
-.h-\[\]{
-  height: ;
-}
-
-.h-\[220\]{
-  height: 220;
-}
-
-.h-\[220px\]{
-  height: 220px;
-}
-
-.h-\[240px\]{
-  height: 240px;
-}
-
-.h-\[280px\]{
-  height: 280px;
-}
-
-.h-\[20px\]{
-  height: 20px;
-}
-
-.h-\[290px\]{
-  height: 290px;
 }
 
 .max-h-\[80vh\]{
@@ -1117,6 +1093,10 @@ video {
   width: 100%;
 }
 
+.w-\[160px\]{
+  width: 160px;
+}
+
 .w-\[17rem\]{
   width: 17rem;
 }
@@ -1169,6 +1149,10 @@ video {
   width: 90%;
 }
 
+.w-auto{
+  width: auto;
+}
+
 .w-fit{
   width: -moz-fit-content;
   width: fit-content;
@@ -1180,22 +1164,6 @@ video {
 
 .w-screen{
   width: 100vw;
-}
-
-.w-\[20px\]{
-  width: 20px;
-}
-
-.w-\[240px\]{
-  width: 240px;
-}
-
-.w-auto{
-  width: auto;
-}
-
-.w-\[160px\]{
-  width: 160px;
 }
 
 .min-w-0{
@@ -1319,16 +1287,16 @@ video {
   gap: 1rem;
 }
 
+.gap-5{
+  gap: 1.25rem;
+}
+
 .gap-6{
   gap: 1.5rem;
 }
 
 .gap-8{
   gap: 2rem;
-}
-
-.gap-5{
-  gap: 1.25rem;
 }
 
 .space-y-4 > :not([hidden]) ~ :not([hidden]){

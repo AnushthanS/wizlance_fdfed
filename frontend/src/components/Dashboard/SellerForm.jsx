@@ -2,6 +2,7 @@ import { useState } from "react";
 import signup from "../../assets/images/signup copy.svg";
 import { Footer, Navbar } from "../partials";
 import "../../assets/seller.css";
+import { Link } from "react-router-dom";
 
 const SellerForm = () => {
   const [imageSelected, setImageSelected] = useState(false);
@@ -268,12 +269,15 @@ const SellerForm = () => {
               </div>
               <div>
                 <div className="flex flex-col justify-center mt-6">
-                  <button
-                    className="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600"
-                    type="submit"
-                  >
-                    Save
-                  </button>
+                  <Link to='/dashboard'>
+
+                    <button
+                      className="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600"
+                      type="submit"
+                    >
+                      Save
+                    </button>
+                  </Link>
                 </div>
               </div>
             </form>
