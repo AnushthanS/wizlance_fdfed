@@ -6,7 +6,7 @@ const navLinks = [
     {
         id: 'signup',
         title: 'Sign up'
-    }
+    },
 ]
 
 const carouselLinks = [

@@ -4,6 +4,23 @@ const Gig = require("../models/gig");
 const User = require("../models/user");
 const Orders = require("../models/orders");
 
+exports.getSubCategory = async (req, res, next) => {
+  const subCategoryId = req.body.subCategoryId;
+  const subCategory = await SubCategories.findById(subCategoryId);
+  res.status(200).json({
+    subCategory,
+  });
+};
+
+exports.getCategoryImg = async (req, res, next) => {
+  const categoryId = req.body.categoryId;
+  const category = await Categories.findById(categoryId);
+  res.status(200).json({
+    category,
+  });
+};
+
+
 exports.getCategories = async (req, res, next) => {
   const categories = await Categories.find({}, " _id name imageUrl");
   res.status(200).json({
@@ -15,7 +32,7 @@ exports.getSubCategories = async (req, res, next) => {
   const category = req.body.categoryId;
 
   try {
-    const subCategories = await SubCategories.find({category});
+    const subCategories = await SubCategories.find({categoryId: category});
     if (!subCategories) {
       const err = new Error("No subcategories found");
       err.statusCode = 404;
@@ -33,10 +50,10 @@ exports.getSubCategories = async (req, res, next) => {
 };
 
 exports.getGigs = async (req, res, next) => {
-  const subcategory = req.body.subcategoryId;
+  const subCategoryId = req.body.subCategoryId;
 
   try {
-    const gigs = await Gig.find({subcategory});
+    const gigs = await Gig.find({subCategoryId});
     if (!gigs) {
       const err = new Error("No gigs found");
       err.statusCode = 404;

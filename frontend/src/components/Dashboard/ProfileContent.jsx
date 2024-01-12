@@ -2,16 +2,22 @@ import ProfileFull from "./helpers/ProfileFull";
 import Table from "./helpers/Table";
 import BecomeSeller from "../../assets/images/becomeSeller.png";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const ProfileContent = () => {
   const [showImage, setShowImage] = useState(true);
   const [skills, setSkills] = useState("");
+  const user = useSelector((state) => (
+    state?.user?.user
+  )
+  )
+
 
   const rows = [
-    ["First Name", "Nishant"],
-    ["Last Name", "Shinde"],
-    ["Email", "nishantshinde316@gmail.com"],
-    ["Role", "Freelancer"],
+    ["First Name", user.firstName],
+    ["Last Name", user.lastName],
+    ["Email", user.email],
+    ["Role", user.isFreelancer ? 'Freelancer' : 'User'],
   ];
   const headings = ["", ""];
 
@@ -50,7 +56,7 @@ const ProfileContent = () => {
 
           <form
             className="flex p-10 flex-col"
-            // onSubmit={handleLogin}
+          // onSubmit={handleLogin}
           >
             <label className="mb-[8px] text-[20px]">Skills</label>
             <textarea
