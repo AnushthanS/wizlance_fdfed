@@ -676,6 +676,10 @@ video {
   margin: 3.5rem;
 }
 
+.m-16{
+  margin: 4rem;
+}
+
 .m-2{
   margin: 0.5rem;
 }
@@ -710,10 +714,6 @@ video {
 
 .m-auto{
   margin: auto;
-}
-
-.m-16{
-  margin: 4rem;
 }
 
 .-mx-2{
