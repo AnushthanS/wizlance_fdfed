@@ -7,8 +7,19 @@ import {
   ProfileContent,
   SellerForm,
 } from "./components/Dashboard";
-import { Landing, Login, SignUp, MainPage, Contact, AdminPage, Payment, ResultTemplate, SubCategories, ProfilePage } from './components';
-
+import {
+  Landing,
+  Login,
+  SignUp,
+  MainPage,
+  Contact,
+  AdminPage,
+  Payment,
+  ResultTemplate,
+  SubCategories,
+  ProfilePage,
+  Error,
+} from "./components";
 
 const App = () => {
   return (
@@ -24,13 +35,15 @@ const App = () => {
           <Route path="profile" element={<ProfileContent />} />
         </Route>
         <Route path="/addgig" element={<SellerForm />} />
-        <Route path="/admin" element={< AdminPage/>} />
-        <Route path='/mainpage' element={<MainPage />} />
-        <Route path='/contact' element={<Contact />} />
-        <Route path='/payment' element={<Payment />} />
-        <Route path='/gigdetails/:gigId' element={<ProfilePage />} />
+        <Route path="/admin" element={<AdminPage />} />
+        <Route path="/mainpage" element={<MainPage />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/payment" element={<Payment />} />
+        <Route path="/gigdetails/:gigId" element={<ProfilePage />} />
         <Route path="/subcategories/:categoryId" element={<SubCategories />} />
         <Route path="/gigs/:subcategoryId" element={<ResultTemplate />} />
+        {/* Catch-all route for unmatched routes */}
+        <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>
   );
