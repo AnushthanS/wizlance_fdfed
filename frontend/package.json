@@ -12,6 +12,7 @@
     "start": "concurrently \"npm run dev\" \"npm run build-css\""
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.8.2",
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
     "@fortawesome/free-regular-svg-icons": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
