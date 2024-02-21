@@ -29,7 +29,7 @@ const MainPage = () => {
 
   return (
     <>
-      <Navbar showlink={false} />
+      <Navbar />
 
       <div className="p-6 mb-12 max-h-fit min-h-[10vh]">
         <TypeAnimation
