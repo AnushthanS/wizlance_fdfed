@@ -17,7 +17,7 @@ const userLogin = createAsyncThunk(
                 config
             );
         } catch (error) {
-            
+            console.log(error); 
         }
     }
 );
