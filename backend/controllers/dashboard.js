@@ -75,3 +75,15 @@ exports.postSignupFreelancer = (req, res, next) => {
       console.log(err);
     });
 };
+
+
+exports.userCheck = async(req, res, next) => {
+  const query = req.query.query;
+  const users = await User.find({
+    firstName: query,
+  });
+  res.status(200).json({
+    users,
+  });
+
+};

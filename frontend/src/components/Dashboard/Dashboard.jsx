@@ -6,10 +6,10 @@ import { useSelector } from "react-redux";
 const Dashboard = () => {
   const user = useSelector((state) => state?.user?.user);
 
- 
+ console.log(user);
 
   return (
-    <div className="h-screen w-screen flex">
+    <div className=" flex ">
       <Sidebar user={user} />
       <div className="flex-1 flex flex-col bg-gray-100">
         <TopBar />

@@ -58,6 +58,7 @@
 //     <>
 //     <Navbar showlink={false}/>
 
+
 //     <div className='div1 mt-10 m-auto max-w-6xl w-[70vw] flex flex-wrap justify-end border-[#ccc] border-2 rounded-[25px] shadow-[0_0px_20px_rgba(0,0,0,0.1)] text-black bg-cover' style={{backgroundImage: url(${login2})}}>
       
 //       <div className='div1a rounded-[25px] p-14 px-32 bg-white border-[#ccc] border-2' >
@@ -176,8 +177,8 @@ const SignUp = () => {
   return (
     <>
       <Navbar showlink={false} />
+      <div className='div1 mt-10 m-auto max-w-6xl w-[70vw] flex flex-wrap justify-end border-[#ccc] border-2 rounded-[25px] shadow-[0_0px_20px_rgba(0,0,0,0.1)] text-black bg-cover' style={{backgroundImage: `url(${login2})`}}>
 
-      <div className='div1 mt-10 m-auto max-w-6xl w-[70vw] flex flex-wrap justify-end border-[#ccc] border-2 rounded-[25px] shadow-[0_0px_20px_rgba(0,0,0,0.1)] text-black bg-cover' style={{backgroundImage: url(${login2})}}>
         <div className='div1a rounded-[25px] p-14 px-32 bg-white border-[#ccc] border-2'>
           <h1 className=' font-semibold text-3xl'>Create Account</h1>
           <p>Join the community of freelancers today!</p>

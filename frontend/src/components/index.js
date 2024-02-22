@@ -1,4 +1,4 @@
-import Landing from "./landing";
+import Landing from "./Landing";
 import AdminPage from "./AdminPage";
 import Login from "./Login";
 import SignUp from "./SignUp";
