@@ -20,13 +20,18 @@ exports.displayUsers = async (req, res) => {
 };
 
 
-// repeated api
-exports.displayCategories = (req, res) => {
-  Category.find({}).then((categories) => {
-    return res.render("pages/display-categories", { categories });
+exports.deleteGig = async(req, res) => {
+  const gigId = req.body.gigId;
+  Gig.findByIdAndRemove(gigId).then(() => res.status(200));
+}
+
+
+exports.displayCategories = async (req, res) => {
+  const categories = await Category.find({});
+  res.status(200).json({
+    categories,
   });
 };
-
 
 exports.displayGigs = async (req, res) => {
   const gig = await Gig.find({})
@@ -42,7 +47,6 @@ exports.deleteFromUser = (req, res) => {
     if (user.isFreelancer) {
       Gig.deleteMany({ freelancerEmail: user.email }).then();
     }
-    return res.redirect("/admin-users");
   });
 };
 

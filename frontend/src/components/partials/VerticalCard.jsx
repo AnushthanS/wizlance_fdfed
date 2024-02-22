@@ -1,6 +1,5 @@
 import { VerticalTimeline, VerticalTimelineElement } from "react-vertical-timeline-component";
 import 'react-vertical-timeline-component/style.min.css';
-import { s1_icon, s2_icon, s3_icon, s4_icon } from "../../assets/index";
 import { FaUserPlus, FaThemeco, FaMoneyCheckDollar, FaUsersLine } from "react-icons/fa6"
 
 const CustomCard = ({ array, isAlternate, cardIcon }) => (

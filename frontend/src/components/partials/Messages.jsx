@@ -21,7 +21,7 @@ const Messages = () => {
 
   return (
 
-    <div className="message-table-container mt-10 m-48 max-h-[80vh] overflow-y-scroll">
+    <div className="w-auto h-auto no-scrollbar px-6 overflow-y-scroll">
       <h2 className=' text-2xl m-3'>Total messages: {messages.length}</h2>
       <table className="message-table w-[100%]">
         <thead>
