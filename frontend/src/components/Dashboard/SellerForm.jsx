@@ -29,11 +29,8 @@ const SellerForm = () => {
   const handleBothChanges = (event) => {
     handleImageChange(event);
     handleChange(event);
-
-    // console.log(formData);
   };
 
-  // Your handleChange function remains the same as before
   function handleChange(e) {
     console.log(e.target.files);
     setFile(URL.createObjectURL(e.target.files[0]));
@@ -83,7 +80,6 @@ const SellerForm = () => {
         "Subtitling",
       ];
     } else {
-      // No option selected
       options = ["Select Sub-Category"];
     }
     setSubCategories(options);
@@ -96,7 +92,7 @@ const SellerForm = () => {
     subCategory: "",
     description: "",
     price: "",
-    image: null, // Assuming you want to store the file object
+    image: null,
   });
   const handleInputChange = (event) => {
     const { name, value, type, files } = event.target;
@@ -104,39 +100,13 @@ const SellerForm = () => {
     let newValue = value;
 
     if (type === "file") {
-      // Extract the file name or URL and update the formData
-      newValue = files[0] ? files[0].name : ""; // For example, extracting the file name
+      newValue = files[0] ? files[0].name : "";
     }
     setFormData({
       ...formData,
       [name]: newValue,
     });
   };
-
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-  //   console.log(formData);
-
-  //   try {
-  //     const response = await fetch("http://localhost:3000/api/addGigs", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(formData),
-  //     });
-
-  //     if (response.ok) {
-  //       alert("Gig uploaded successfully!");
-  //       navigate("/dashboard");
-  //     } else {
-  //       alert("Something went wrong. Gig not uploaded.");
-  //     }
-  //   } catch (error) {
-  //     alert("Something went wrong. Gig not uploaded.");
-  //     console.error("Error:", error);
-  //   }
-  // };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -178,17 +148,17 @@ const SellerForm = () => {
     <>
       <Navbar showlink={false} />
 
-      <main>
         <div className="container mx-auto mt-4 p-1 flex flex-col items-center lg:flex-row lg:justify-between">
           <div className="mx-auto p-5">
             <h1 className="text-3xl text-[var(--color5)] font-bold md:text-5xl">
               Freelancing is the future.
             </h1>
-            <p className="font- my-3">Join the community</p>
+            <p className="font-light my-3">Add your gig now</p>
             <hr />
             <br />
-            <img src={signup} className="h-60" alt="" />
+            <img src={signup} className="h-60" alt="Generic_Img" />
           </div>
+          
           <section className="max-w-lg h-auto  p-6 mx-auto bg-indigo-600 rounded-md shadow-md my-10 dark:bg-gray-800 ">
             <form method="post" onSubmit={handleSubmit}>
               <div>
@@ -270,7 +240,7 @@ const SellerForm = () => {
                     name="description"
                     id="textarea"
                     type="textarea"
-                    className="block mt-2 w-full text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+                    className="block mt-2 p-2 w-full text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
                     rows="3"
                     placeholder="Enter description"
                     onChange={handleInputChange}
@@ -336,25 +306,19 @@ const SellerForm = () => {
               </div>
               <div>
                 <div className="flex flex-col justify-center mt-6">
-                  {/* <Link to='/dashboard'> */}
-
                     <button
                       className="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600"
                       type="submit"
                     >
                       Save
                     </button>
-                  {/* </Link> */}
                 </div>
               </div>
             </form>
           </section>
         </div>
-      </main>
 
       <Footer />
-
-       {/* Popup */}
        {popupMessage && (
         <Popup
           message={popupMessage}
@@ -365,7 +329,6 @@ const SellerForm = () => {
           }}
         />
       )}
-      
     </>
   );
 };
