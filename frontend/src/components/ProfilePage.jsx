@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Footer, Navbar } from "./partials";
 import img from "../assets/images/user.jpg";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
 
@@ -30,7 +30,7 @@ const ProfilePage = () => {
       )
       .then((res) => {
         console.log(res.data);
-        navigate("/payment", { state: { orderId: res.data.orderId } });
+        navigate(`/payment/${res.data.orderId}`);
       })
       .catch((err) => console.log(err));
   };

@@ -13,5 +13,6 @@ router.post("/api/subcategories", shopController.getSubCategories);
 router.post("/api/gigs", shopController.getGigs);
 router.post("/api/gig/details", shopController.getGigDetails);
 router.post("/api/placeOrder", isAuth, shopController.placeOrder);
+router.post("/api/pay", isAuth, shopController.postPay);
 
 module.exports = router;

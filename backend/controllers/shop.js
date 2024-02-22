@@ -114,3 +114,28 @@ exports.placeOrder = async (req, res) => {
     next(error);
   }
 };
+
+exports.postPay = async (req, res) => {
+  const orderId = req.body.orderId;
+
+  try {
+    const order = await Order.findById(orderId);
+    if (!order) {
+      const error = new Error("No order found");
+      error.statusCode = 404;
+      throw error;
+    }
+
+    order.paymentStatus = true;
+    await order.save();
+
+    res.status(200).json({
+      message: "Order paid successfully",
+    });
+  } catch (error) {
+    if (!error.statusCode) {
+      error.statusCode = 500;
+    }
+    next(error);
+  }
+};
