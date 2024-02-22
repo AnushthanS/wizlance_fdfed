@@ -2,12 +2,20 @@ import { useState } from "react";
 import signup from "../../assets/images/signup copy.svg";
 import { Footer, Navbar } from "../partials";
 import "../../assets/seller.css";
-import { Link } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import Popup from './Popup';
+
 
 const SellerForm = () => {
+  const navigate = useNavigate();
   const [imageSelected, setImageSelected] = useState(false);
   const [file, setFile] = useState();
+  const [popupMessage, setPopupMessage] = useState('');
+  const [isErrorPopup, setIsErrorPopup] = useState(false);
 
+  const user = useSelector((state) => state?.user?.user);
+  
   const handleImageChange = (event) => {
     const uploadedFile = event.target.files[0];
     if (uploadedFile && uploadedFile.type.startsWith("image/")) {
@@ -21,6 +29,8 @@ const SellerForm = () => {
   const handleBothChanges = (event) => {
     handleImageChange(event);
     handleChange(event);
+
+    // console.log(formData);
   };
 
   // Your handleChange function remains the same as before
@@ -80,6 +90,7 @@ const SellerForm = () => {
   };
 
   const [formData, setFormData] = useState({
+    email: user?.email,
     gig: "",
     category: "",
     subCategory: "",
@@ -102,10 +113,66 @@ const SellerForm = () => {
     });
   };
 
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+  //   console.log(formData);
+
+  //   try {
+  //     const response = await fetch("http://localhost:3000/api/addGigs", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(formData),
+  //     });
+
+  //     if (response.ok) {
+  //       alert("Gig uploaded successfully!");
+  //       navigate("/dashboard");
+  //     } else {
+  //       alert("Something went wrong. Gig not uploaded.");
+  //     }
+  //   } catch (error) {
+  //     alert("Something went wrong. Gig not uploaded.");
+  //     console.error("Error:", error);
+  //   }
+  // };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(formData);
+
+    try {
+      const formDataWithImage = new FormData();
+      formDataWithImage.append('email', formData.email);
+      formDataWithImage.append('gig', formData.gig);
+      formDataWithImage.append('category', formData.category);
+      formDataWithImage.append('subCategory', formData.subCategory);
+      formDataWithImage.append('description', formData.description);
+      formDataWithImage.append('price', formData.price);
+      formDataWithImage.append('image', event.target.image.files[0]);
+
+      const response = await fetch('http://localhost:3000/api/addGigs', {
+        method: 'POST',
+        body: formDataWithImage,
+      });
+
+      if (response.ok) {
+        setPopupMessage('Gig uploaded successfully!');
+        setIsErrorPopup(false);
+        setTimeout(() => {
+          navigate('/dashboard');
+        }, 2000);
+      } else {
+        setPopupMessage('Something went wrong. Gig not uploaded.');
+        setIsErrorPopup(true);
+      }
+    } catch (error) {
+      setPopupMessage('Something went wrong. Gig not uploaded.');
+      setIsErrorPopup(true);
+      console.error('Error:', error);
+    }
   };
+
 
   return (
     <>
@@ -269,7 +336,7 @@ const SellerForm = () => {
               </div>
               <div>
                 <div className="flex flex-col justify-center mt-6">
-                  <Link to='/dashboard'>
+                  {/* <Link to='/dashboard'> */}
 
                     <button
                       className="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600"
@@ -277,7 +344,7 @@ const SellerForm = () => {
                     >
                       Save
                     </button>
-                  </Link>
+                  {/* </Link> */}
                 </div>
               </div>
             </form>
@@ -286,6 +353,19 @@ const SellerForm = () => {
       </main>
 
       <Footer />
+
+       {/* Popup */}
+       {popupMessage && (
+        <Popup
+          message={popupMessage}
+          isError={isErrorPopup}
+          onClose={() => {
+            setPopupMessage('');
+            setIsErrorPopup(false);
+          }}
+        />
+      )}
+      
     </>
   );
 };

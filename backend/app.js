@@ -96,6 +96,7 @@ const freelancerRoutes = require("./routes/freelancer");
 
 const app = express();
 
+app.use(cors());
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
