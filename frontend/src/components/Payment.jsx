@@ -1,9 +1,30 @@
+import axios from "axios";
 import { Navbar } from "./partials";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Payment = () => {
-  const location = useLocation(); // Use useLocation to get the location object
-  const orderData = location.state?.orderId;
+  const navigate = useNavigate();
+  const token = useSelector((state) => state?.user?.token);
+  const orderId = useLocation().pathname.replace("/payment/", "");
+
+  const handlePayment = () => {
+    axios
+      .post(
+        "/api/pay",
+        { orderId },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res.data);
+        navigate("/dashboard");
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <>
@@ -106,11 +127,12 @@ const Payment = () => {
             </div>
           </div>
           <div>
-            <Link to="/dashboard">
-              <button className="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">
-                <i className="mdi mdi-lock-outline mr-1"></i> PAY NOW
-              </button>
-            </Link>
+            <button
+              onClick={handlePayment}
+              className="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"
+            >
+              <i className="mdi mdi-lock-outline mr-1"></i> PAY NOW
+            </button>
           </div>
         </div>
       </div>

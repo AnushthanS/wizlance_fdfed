@@ -49,7 +49,7 @@ const App = () => {
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/mainpage" element={<MainPage />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/payment" element={<Payment />} />
+        <Route path="/payment/:orderId" element={<Payment />} />
         <Route path="/gigdetails/:gigId" element={<ProfilePage />} />
         <Route path="/subcategories/:categoryId" element={<SubCategories />} />
         <Route path="/gigs/:subcategoryId" element={<ResultTemplate />} />
