@@ -20,9 +20,11 @@ import {
   ProfilePage,
   Error,
 } from "./components";
+import { useSelector } from 'react-redux';
 
 const App = () => {
 
+  const user = useSelector((state) => state?.user?.user);
   return (
       <BrowserRouter>
         <Routes>
@@ -30,10 +32,10 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/dashboard" element={<Dashboard />}>
-            <Route index element={<IndexContent />} />
+          {user.isFreelancer ? <Route index element={<IndexContent />} /> : <Route path="profile" index element={<ProfileContent />} />}
             <Route path="orders" element={<OrdersContent />} />
             <Route path="projects" element={<ProjectsContent />} />
-            <Route path="profile" element={<ProfileContent />} />
+         
           </Route>
           <Route path="/addgig" element={<SellerForm />} />
           <Route path="/admin" element={<AdminPage />} />

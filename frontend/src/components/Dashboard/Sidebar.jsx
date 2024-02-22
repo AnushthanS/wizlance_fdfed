@@ -10,6 +10,8 @@ import SidebarComp from "./helpers/SidebarComp";
 import { Link } from "react-router-dom";
 
 const Sidebar = ({user}) => {
+
+  
   return (
     <div className="bg-blue-950 text-gray-100 w-auto h-auto sticky">
       <div className="p-4 mb-3">
@@ -21,22 +23,23 @@ const Sidebar = ({user}) => {
       </div>
       <ProfileCard user={user} />
       <nav className="mt-10">
-        <SidebarComp to="/dashboard" tabName="Dashboard" tabIcon={faBullseye} />
+
+      { user.isFreelancer ?  <SidebarComp to="/dashboard" tabName="Dashboard" tabIcon={faBullseye} /> :   <SidebarComp
+          to="/dashboard/profile"
+          tabName="Profile"
+          tabIcon={faUser}
+        />}
         <SidebarComp
           to="/dashboard/orders"
           tabName="Orders"
           tabIcon={faBagShopping}
         />
-        <SidebarComp
+       { user.isFreelancer ? <SidebarComp
           to="/dashboard/projects"
           tabName="Projects"
           tabIcon={faClipboardCheck}
-        />
-        <SidebarComp
-          to="/dashboard/profile"
-          tabName="Profile"
-          tabIcon={faUser}
-        />
+        /> : null}
+    
       </nav>
     </div>
   );
