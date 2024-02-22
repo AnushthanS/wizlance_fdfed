@@ -8,14 +8,14 @@ router.get("/api/admin-dashboard", adminController.getDashboard);
 router.get("/api/admin-users", adminController.displayUsers);
 router.get("/api/admin-categories", adminController.displayCategories);
 router.get("/api/admin-gigs", adminController.displayGigs);
-router.get("/api/admin-messages", adminController.displayMessages);
+// router.get("/api/admin-messages", adminController.displayMessages);
 
 router.post("/api/admin-delete", adminController.deleteFromUser);
 router.post("/api/admin-add-category", adminController.addCategory);
 router.post("/api/admin-add-subcategory", adminController.addSubCategory);
 router.post("/api/admin-delete-category", adminController.deleteCategory);
 router.post("/api/admin-delete-subcategory", adminController.deleteSubCategory);
-router.post("/api/contact-admin", adminController.contactAdmin);
+// router.post("/api/contact-admin", adminController.contactAdmin);
 
 router.post("/api/sendMail", adminController.postMail);
 router.get("/api/admin-sendMail", adminController.getMailPage);

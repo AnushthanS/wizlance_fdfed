@@ -15,6 +15,6 @@ router.post("/api/gig/details", shopController.getGigDetails);
 
 router.get("/api/:pages/:categories/:gig", shopController.getGigs);
 router.get("/api/:pages/:categories/:gig/payment", shopController.getPayment);
-router.post("/api/place-order", shopController.orderplaced);
+// router.post("/api/place-order", shopController.orderplaced);
 
 module.exports = router;
