@@ -1,14 +1,15 @@
-import React from "react";
 import { Navbar } from "./partials";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Payment = () => {
+  const location = useLocation(); // Use useLocation to get the location object
+  const orderData = location.state?.orderId;
+
   return (
     <>
       <header>
         <Navbar />
       </header>
-
       <div className="min-w-screen min-h-screen bg-gray-200 flex items-center justify-center px-5 pb-10 pt-16">
         <div
           className="w-full mx-auto rounded-lg bg-white shadow-lg p-5 text-gray-700"
@@ -105,7 +106,7 @@ const Payment = () => {
             </div>
           </div>
           <div>
-            <Link to='/dashboard'>
+            <Link to="/dashboard">
               <button className="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">
                 <i className="mdi mdi-lock-outline mr-1"></i> PAY NOW
               </button>

@@ -2,7 +2,7 @@ const Categories = require("../models/category");
 const SubCategories = require("../models/subcategory")
 const Gig = require("../models/gig");
 const User = require("../models/user");
-// const Orders = require("../models/orders");
+const Order = require("../models/order");
 
 exports.getSubCategory = async (req, res, next) => {
   const subCategoryId = req.body.subCategoryId;
@@ -20,7 +20,6 @@ exports.getCategoryImg = async (req, res, next) => {
   });
 };
 
-
 exports.getCategories = async (req, res, next) => {
   const categories = await Categories.find({}, " _id name imageUrl");
   res.status(200).json({
@@ -32,7 +31,7 @@ exports.getSubCategories = async (req, res, next) => {
   const category = req.body.categoryId;
 
   try {
-    const subCategories = await SubCategories.find({categoryId: category});
+    const subCategories = await SubCategories.find({ categoryId: category });
     if (!subCategories) {
       const err = new Error("No subcategories found");
       err.statusCode = 404;
@@ -53,7 +52,7 @@ exports.getGigs = async (req, res, next) => {
   const subCategoryId = req.body.subCategoryId;
 
   try {
-    const gigs = await Gig.find({subCategoryId});
+    const gigs = await Gig.find({ subCategoryId });
     if (!gigs) {
       const err = new Error("No gigs found");
       err.statusCode = 404;
@@ -89,30 +88,29 @@ exports.getGigDetails = async (req, res, next) => {
     }
     next(err);
   }
-}
-
-// upgrade remaining
-exports.getPayment = (req, res, next) => {
-  const gigName = req.params.gig;
-  res.render("pages/Payment", { gigName });
 };
 
-// exports.orderplaced = (req, res) => {
-//   const findGig = req.body.gigs;
-//   const projectRequirements = req.body.projectRequest;
+exports.placeOrder = async (req, res) => {
+  const { gigId, freelancerId, details } = req.body;
 
-//   Gig.findOne({ name: findGig })
-//     .then((OrderGig) => {
-//       const orderSaved = new Orders({
-//         userEmail: req.session.user.email,
-//         gigId: OrderGig._id,
-//         projectRequest: projectRequirements,
-//       });
+  try {
+    const order = new Order({
+      client: req.userId,
+      freelancer: freelancerId,
+      gig: gigId,
+      details,
+    });
 
-//       orderSaved.save();
-//       res.redirect("/mainpage");
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// };
+    const result = await order.save();
+
+    res.status(201).json({
+      message: "Order created successfully",
+      orderId: result._id.toString(),
+    });
+  } catch (error) {
+    if (!error.statusCode) {
+      error.statusCode = 500;
+    }
+    next(error);
+  }
+};
