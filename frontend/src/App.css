@@ -813,10 +813,6 @@ video {
   margin-bottom: 3.5rem;
 }
 
-.mb-16{
-  margin-bottom: 4rem;
-}
-
 .mb-2{
   margin-bottom: 0.5rem;
 }
@@ -915,10 +911,6 @@ video {
 
 .mt-6{
   margin-top: 1.5rem;
-}
-
-.mt-\[100px\]{
-  margin-top: 100px;
 }
 
 .box-border{
@@ -1568,11 +1560,6 @@ video {
 .bg-pink-500{
   --tw-bg-opacity: 1;
   background-color: rgb(236 72 153 / var(--tw-bg-opacity));
-}
-
-.bg-pink-800{
-  --tw-bg-opacity: 1;
-  background-color: rgb(157 23 77 / var(--tw-bg-opacity));
 }
 
 .bg-purple-800{

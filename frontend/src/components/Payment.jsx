@@ -53,7 +53,7 @@ const Payment = () => {
                 className="flex items-center cursor-pointer"
               >
                 <img
-                  src="path/to/your/image1.png"
+                  src="https://dharmamerchantservices.com/wp-content/uploads/2017/06/visa-logo-white-background.png"
                   alt="Type 1"
                   className="h-8 ml-3"
                 />
