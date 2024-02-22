@@ -16,10 +16,10 @@ const subcategory = require("../models/subcategory");
 
 // user api
 exports.displayUsers = async (req, res) => {
-    const users = await  User.find({}, { password: 0 });
-    res.status(200).json({
-      users,
-    });
+  const users = await User.find({}, { password: 0 });
+  res.status(200).json({
+    users,
+  });
 };
 
 

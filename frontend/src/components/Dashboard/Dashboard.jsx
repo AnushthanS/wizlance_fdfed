@@ -1,11 +1,8 @@
 import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import TopBar from "./TopBar";
-import { useSelector } from "react-redux";
 
 const Dashboard = () => {
-  
-
   return (
     <div className=" flex ">
       <Sidebar  />

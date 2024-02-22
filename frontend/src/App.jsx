@@ -46,10 +46,10 @@ const App = () => {
           <Route path="/subcategories/:categoryId" element={<SubCategories />} />
           <Route path="/gigs/:subcategoryId" element={<ResultTemplate />} />
 
-          {/* Catch-all route for unmatched routes */}
-          <Route path="*" element={<Error />} />
-        </Routes>
-      </BrowserRouter>
+        {/* Catch-all route for unmatched routes */}
+        <Route path="*" element={<Error />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 export default App;
