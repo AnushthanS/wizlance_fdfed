@@ -8,8 +8,10 @@ import { logo } from "../../assets";
 import ProfileCard from "./helpers/ProfileCard";
 import SidebarComp from "./helpers/SidebarComp";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-const Sidebar = ({user}) => {
+const Sidebar = () => {
+  const user = useSelector((state) => state?.user?.user);
 
   
   return (
@@ -25,7 +27,7 @@ const Sidebar = ({user}) => {
       <nav className="mt-10">
 
       { user.isFreelancer ?  <SidebarComp to="/dashboard" tabName="Dashboard" tabIcon={faBullseye} /> :   <SidebarComp
-          to="/dashboard/profile"
+          to="/dashboard"
           tabName="Profile"
           tabIcon={faUser}
         />}
