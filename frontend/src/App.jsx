@@ -20,8 +20,19 @@ import {
   ProfilePage,
   Error,
 } from "./components";
+import { useEffect } from 'react';
 
 const App = () => {
+
+  useEffect(() => {
+    const initLocomotiveScroll = async () => {
+      const LocomotiveScroll = (await import("locomotive-scroll")).default;
+      new LocomotiveScroll();
+    }
+
+    initLocomotiveScroll();
+  }, []);
+
   return (
     <BrowserRouter>
       <Routes>
