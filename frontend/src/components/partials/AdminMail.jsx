@@ -1,30 +1,35 @@
 const AdminMail = () => {
     return (
-        <>
-            <div className="p-6 m-14 flex flex-col md:flex-row md:justify-around items-center gap-4 border-[#ccc] border-2 rounded-[25px] shadow-[0_0px_20px_rgba(0,0,0,0.1)]">
+        <div className="px-6 mx-6 md:p-14 flex flex-col md:flex-row md:justify-around items-center gap-8 border border-gray-300 rounded-lg shadow-md">
 
-                <span className="text-4xl w-full font-normal sm:w-1/3">Send a common mail to every user, <br />
-                    or to a specific user.</span>
+            <div className="md:hidden w-full border-t-2 border-gray-300"></div>
 
-                <div className="hidden md:block border-2 border-slate-600 h-[200px] w-[0.25rem]"></div>
-
-                <section className="text-2xl font-light max-w-fit w-1/2">
-
-                    <form id="emailForm" className="flex flex-col">
-
-                        <label htmlFor="mailSubject" className="mt-12">Subject</label>
-                        <input type="text" name="mailSubject" className="p-2 border-1 border-gray-600 active:border-blue-900 shadow-[0_0px_20px_rgba(0,0,0,0.1)] max-w-fit my-2 mb-4" />
-
-                        <label htmlFor="mailMessage" className="mt-12">Message</label>
-                        <textarea name="mailMessage" id="mailMessage" rows="10"
-                            className="p-2 border-1 border-gray-600 active:border-blue-900 shadow-[0_0px_20px_rgba(0,0,0,0.1)] max-w-fit my-2 mb-4"
-                        />
-                     <button className='p-[10px] bg-black text-white rounded-[20px] hover:bg-pink-500' type="submit">Send</button>
-                    </form>
-
-                </section>
+            <div className="text-center md:text-left md:w-1/3">
+                <h1 className="text-4xl font-semibold mb-4">Send a Common Mail</h1>
+                <p className="text-lg text-gray-600 mb-4 font-thin">Send a common mail to every user</p>
             </div>
-        </>
+
+            <div className="hidden md:block border-r-2 border-gray-300 h-48"></div>
+
+            <section className="flex flex-col items-center md:items-start md:w-2/3">
+                <form id="emailForm" className="w-full max-w-md">
+
+                    <div className="mb-6">
+                        <label htmlFor="mailSubject" className="block text-lg font-semibold mb-2">Subject</label>
+                        <input type="text" name="mailSubject" id="mailSubject" className="w-full p-3 border border-gray-400 rounded-md focus:outline-none focus:border-blue-500" />
+                    </div>
+
+                    <div className="mb-6">
+                        <label htmlFor="mailMessage" className="block text-lg font-semibold mb-2">Message</label>
+                        <textarea name="mailMessage" id="mailMessage" rows="6" className="w-full p-3 border border-gray-400 rounded-md resize-none focus:outline-none focus:border-blue-500"></textarea>
+                    </div>
+
+                    <button className="w-full py-3 bg-black text-white rounded-md hover:bg-pink-500 focus:outline-none focus:ring focus:ring-pink-400" type="submit">Send</button>
+
+                </form>
+            </section>
+
+        </div>
     );
 }
 

@@ -1,9 +1,12 @@
 const User = require("../models/user");
 const Category = require("../models/category");
 const Gig = require("../models/gig");
+const SubCategories = require("../models/subcategory")
+
 // const Messages = require("../models/messages");
 
 const nodemailer = require("nodemailer");
+const subcategory = require("../models/subcategory");
 
 // exports.displayUsers = (req, res) => {
 //   User.find({}, { password: 0 }).then((users) => {
@@ -20,13 +23,53 @@ exports.displayUsers = async (req, res) => {
 };
 
 
-// repeated api
-exports.displayCategories = (req, res) => {
-  Category.find({}).then((categories) => {
-    return res.render("pages/display-categories", { categories });
-  });
+exports.deleteGig = async(req, res) => {
+  const gigId = req.body.gigId;
+  Gig.findByIdAndRemove(gigId).then(() => res.status(200));
+}
+
+
+exports.displayCategories = async (req, res) => {
+  try {
+    const categories = await Category.find({});
+    console.log('Fetched categories:', categories);
+    res.status(200).json({
+      categories,
+    });
+  } catch (error) {
+    console.error('Error fetching categories:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 };
 
+exports.displaySubCategories = async (req, res, next) => {
+  try {
+    const subCategories = await SubCategories.find({ });
+
+    if (!subCategories) {
+      const err = new Error("No subcategories found");
+      err.statusCode = 404;
+      throw err;
+    }
+
+    const subcategories = await Promise.all(subCategories.map(async (subCategory) => {
+      const category = await Category.findById(subCategory.categoryId);
+      return {
+        ...subCategory.toObject(),
+        category: category,
+      };
+    }));
+    console.log(subcategories);
+    res.status(200).json({
+      subcategories,
+    });
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
+}
 
 exports.displayGigs = async (req, res) => {
   const gig = await Gig.find({})
@@ -42,7 +85,6 @@ exports.deleteFromUser = (req, res) => {
     if (user.isFreelancer) {
       Gig.deleteMany({ freelancerEmail: user.email }).then();
     }
-    return res.redirect("/admin-users");
   });
 };
 

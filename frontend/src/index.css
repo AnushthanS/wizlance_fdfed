@@ -4,14 +4,30 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components{
+@layer components {
   #gradient-canvas {
-    width:100%;
+    width: 100%;
     height: inherit;
-    --gradient-color-1: #606080; 
-    --gradient-color-2: #043D5D; 
-    --gradient-color-3: #fff;  
+    --gradient-color-1: #606080;
+    --gradient-color-2: #043D5D;
+    --gradient-color-3: #fff;
     --gradient-color-4: #8d7dca;
+  }
+}
+
+@layer utilities {
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
   }
 }
 
