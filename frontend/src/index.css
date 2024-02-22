@@ -8,10 +8,10 @@
   #gradient-canvas {
     width:100%;
     height: inherit;
-    --gradient-color-1: #53DF83; 
-    --gradient-color-2: #47D2E9; 
-    --gradient-color-3: #3F3F3F;  
-    --gradient-color-4: #EEEEEE;
+    --gradient-color-1: #606080; 
+    --gradient-color-2: #043D5D; 
+    --gradient-color-3: #fff;  
+    --gradient-color-4: #8d7dca;
   }
 }
 
