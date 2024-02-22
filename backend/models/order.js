@@ -13,7 +13,7 @@ const orderSchema = new Schema({
     required: true,
     ref: "User",
   },
-  gigId: {
+  gig: {
     type: Schema.Types.ObjectId,
     required: true,
     ref: "Gig",
@@ -25,6 +25,10 @@ const orderSchema = new Schema({
     // Pending, Accepted, Rejected, Completed
     type: String,
     default: "Pending",
+  },
+  paymentStatus: {
+    type: Boolean,
+    default: false,
   },
 });
 

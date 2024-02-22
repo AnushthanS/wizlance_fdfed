@@ -1,25 +1,50 @@
 import { useState, useEffect } from "react";
 import { Footer, Navbar } from "./partials";
 import img from "../assets/images/user.jpg";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 const ProfilePage = () => {
   const gigId = useLocation().pathname.replace("/gigdetails/", "");
-    console.log("GID :", gigId);
 
-    const [gig, setGig] = useState([]);
+  const navigate = useNavigate();
+  const token = useSelector((state) => state?.user?.token);
 
-    useEffect(() => {
-        axios.post('/api/gig/details', {gigId}).then(
-            (res) => {
-                console.log(res.data)
-                setGig(res.data.gig)
-            }
-        ).catch(
-            err => console.log(err)
-        );
-    }, []);
+  const [gig, setGig] = useState({});
+
+  const handleHire = () => {
+    axios
+      .post(
+        "/api/placeOrder",
+        {
+          gigId,
+          freelancerId: gig.freelancer,
+          details: "Some details",
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res.data);
+        navigate(`/payment/${res.data.orderId}`);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    axios
+      .post("/api/gig/details", { gigId })
+      .then((res) => {
+        console.log(res.data);
+        setGig(res.data.gig);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <>
       <div className="flex flex-col min-h-screen">
@@ -126,12 +151,12 @@ const ProfilePage = () => {
                             <b>Price:</b> $ 50/hr
                           </p>
                           <div className="py-3 px-3 mt-16 sm:mt-0">
-                            
-                            <Link to={'/payment'}>
-                              <button className="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">
-                                <i className="mdi mdi-lock-outline mr-1"></i> Hire
-                              </button>
-                            </Link>
+                            <button
+                              onClick={handleHire}
+                              className="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"
+                            >
+                              <i className="mdi mdi-lock-outline mr-1"></i> Hire
+                            </button>
                           </div>
                         </div>
                       </div>
@@ -139,8 +164,8 @@ const ProfilePage = () => {
                   </div>
                 </div>
               </div>
-            
-              <Footer/>
+
+              <Footer />
             </section>
           </main>
         </div>
