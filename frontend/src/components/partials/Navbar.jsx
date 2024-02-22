@@ -48,18 +48,20 @@ const Navbar = ({ showlink, isLanding }) => {
                     <Link to={"/mainpage"}>{`Hi, ${user?.firstName}`}</Link>
                   </li>
                 ) : (
-                  <li
-                    className={`text-white text-[18px] font-medium cursor-pointer`}
-                  >
-                    <Link to={"/dashboard"}>Dashboard</Link>
-                  </li>
+                  <>
+                    <li
+                      className={`text-white text-[18px] font-medium cursor-pointer`}
+                    >
+                      <Link to={"/dashboard"}>Dashboard</Link>
+                    </li>
+                    <li
+                      className={`text-red-500 text-[18px] font-medium cursor-pointer`}
+                      onClick={handleLogout}
+                    >
+                      <Link to={"/"}>Logout</Link>
+                    </li>
+                  </>
                 )}
-                <li
-                  className={`text-red-500 text-[18px] font-medium cursor-pointer`}
-                  onClick={handleLogout}
-                >
-                  <Link to={"/"}>Logout</Link>
-                </li>
               </>
             ) : (
               navLinks.map((link) => (

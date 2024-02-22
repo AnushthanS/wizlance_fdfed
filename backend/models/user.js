@@ -22,7 +22,12 @@ const userSchema = new Schema({
 
   isFreelancer: Boolean,
   isAdmin: Boolean,
-  freelancerSkills: [String],
+  freelancerSkills: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Skill",
+    },
+  ],
   freelancerRating: {
     type: Number,
     default: 0,

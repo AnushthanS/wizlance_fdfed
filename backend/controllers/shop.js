@@ -2,7 +2,7 @@ const Categories = require("../models/category");
 const SubCategories = require("../models/subcategory")
 const Gig = require("../models/gig");
 const User = require("../models/user");
-const Orders = require("../models/orders");
+// const Orders = require("../models/orders");
 
 exports.getSubCategory = async (req, res, next) => {
   const subCategoryId = req.body.subCategoryId;
@@ -97,22 +97,22 @@ exports.getPayment = (req, res, next) => {
   res.render("pages/Payment", { gigName });
 };
 
-exports.orderplaced = (req, res) => {
-  const findGig = req.body.gigs;
-  const projectRequirements = req.body.projectRequest;
+// exports.orderplaced = (req, res) => {
+//   const findGig = req.body.gigs;
+//   const projectRequirements = req.body.projectRequest;
 
-  Gig.findOne({ name: findGig })
-    .then((OrderGig) => {
-      const orderSaved = new Orders({
-        userEmail: req.session.user.email,
-        gigId: OrderGig._id,
-        projectRequest: projectRequirements,
-      });
+//   Gig.findOne({ name: findGig })
+//     .then((OrderGig) => {
+//       const orderSaved = new Orders({
+//         userEmail: req.session.user.email,
+//         gigId: OrderGig._id,
+//         projectRequest: projectRequirements,
+//       });
 
-      orderSaved.save();
-      res.redirect("/mainpage");
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
+//       orderSaved.save();
+//       res.redirect("/mainpage");
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+// };

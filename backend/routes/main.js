@@ -5,7 +5,7 @@ const otherFuncController = require("../controllers/otherFunc");
 
 const router = express.Router();
 
-router.get("/api/dashboard", dashboardController.getDashboard);
+// router.get("/api/dashboard", dashboardController.getDashboard);
 router.get("/api/seller-overview", dashboardController.getSellerForm);
 router.post("/api/signupFreelancer", dashboardController.postSignupFreelancer);
 
