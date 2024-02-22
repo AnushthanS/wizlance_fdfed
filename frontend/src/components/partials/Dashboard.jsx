@@ -1,9 +1,11 @@
+import { VscDashboard } from "react-icons/vsc";
 const Dashboard = () => {
     return (
-        <>
-        <p className="m-16 font-bold text-4xl">Welcome to the Admin Dashboard!!</p>
-        <p className="m-16 text-2xl">Navigate using the side bar to explore admin features</p>
-        </>
+        <section className="m-16 flex flex-col flex-shrink justify-center items-center gap-8">
+            <span className="font-bold text-4xl">Welcome to the Admin Dashboard!!</span>
+            <VscDashboard className="text-9xl" />
+            <p className="text-2xl">Navigate using the side bar to explore admin features</p>
+        </section>
     );
 }
 

@@ -1,45 +1,35 @@
+import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-
-const usersData = [
-  { id: 1, name: 'John Doe', email: 'john@example.com' },
-  { id: 2, name: 'Jane Doe', email: 'jane@example.com' },
-  { id: 4, name: 'Rishabh Jha', email: 'rishabh@example.com' },
-  { id: 5, name: 'John Doe', email: 'john@example.com' },
-  { id: 6, name: 'Jane Doe', email: 'jane@example.com' },
-  { id: 7, name: 'Rishabh Jha', email: 'rishabh@example.com' },
-  { id: 8, name: 'John Doe', email: 'john@example.com' },
-  { id: 9, name: 'Jane Doe', email: 'jane@example.com' },
-  { id: 10, name: 'Rishabh Jha', email: 'rishabh@example.com' },
-  { id: 11, name: 'John Doe', email: 'john@example.com' },
-  { id: 12, name: 'Jane Doe', email: 'jane@example.com' },
-  { id: 13, name: 'Rishabh Jha', email: 'rishabh@example.com' },
-  { id: 14, name: 'Rishabh Jha', email: 'rishabh@example.com' },
-  { id: 15, name: 'John Doe', email: 'john@example.com' },
-  { id: 16, name: 'Jane Doe', email: 'jane@example.com' },
-  { id: 17, name: 'Rishabh Jha', email: 'rishabh@example.com' },
-  { id: 18, name: 'Rishabh Jha', email: 'rishabh@example.com' },
-  { id: 19, name: 'John Doe', email: 'john@example.com' },
-  { id: 20, name: 'Jane Doe', email: 'jane@example.com' },
-  { id: 21, name: 'Rishabh Jha', email: 'rishabh@example.com' },
-  
-  
-];
 
 const Users = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    setUsers(usersData);
+    fetchUsers();
   }, []);
 
-  const handleDeleteUser = (userId) => {
-    const updatedUsers = users.filter((user) => user.id !== userId);
-    setUsers(updatedUsers);
+  const fetchUsers = async () => {
+    try {
+      const response = await axios.get('/api/admin-users');
+      setUsers(response.data.users);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    }
+  };
+
+  const handleDeleteUser = async (userMail) => {
+    try {
+      await axios.post('/api/admin-delete', { deleteFromEmail: userMail });
+      console.log(`User ${userMail} deleted successfully`);
+      setUsers(setUsers(prevUsers => prevUsers.filter((user) => user.email !== userMail)));
+    } catch (error) {
+      console.error('Error deleting user:', error);
+    }
   };
 
   return (
 
-    <div className="user-table-container mt-10 m-48 max-h-[80vh] overflow-y-scroll">
+    <div className="w-auto h-auto px-4 overflow-y-scroll no-scrollbar">
       <h2 className=' text-2xl m-3'>Total Users: {users.length}</h2>
       <table className="user-table w-[100%]">
         <thead>
@@ -51,16 +41,18 @@ const Users = () => {
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => (
+          {users.map((user, index) =>
+          (
             <tr key={user.id}>
-              <td className='border-black border-2 p-[20px] text-lg align-middle'>{user.id}</td>
-              <td className='border-black border-2 p-[20px] text-lg align-middle'>{user.name}</td>
+              <td className='border-black border-2 p-[20px] text-lg align-middle'>{index + 1}</td>
+              <td className='border-black border-2 p-[20px] text-lg align-middle'>{`${user.firstName} ${user.lastName}`}</td>
               <td className='border-black border-2 p-[20px] text-lg align-middle'>{user.email}</td>
               <td className='border-black border-2 p-[20px] text-lg align-middle'>
-                <button className=' border-red-600 border-2 bg-red-600 text-white p-2 rounded-md' onClick={() => handleDeleteUser(user.id)}>Delete</button>
+                <button className=' border-red-600 border-2 bg-red-600 text-white p-2 rounded-md' onClick={() => handleDeleteUser(user.email)}>Delete</button>
               </td>
             </tr>
-          ))}
+          )
+          )}
         </tbody>
       </table>
     </div>

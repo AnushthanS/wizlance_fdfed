@@ -11,6 +11,7 @@ router.get("/api/admin-gigs", adminController.displayGigs);
 // router.get("/api/admin-messages", adminController.displayMessages);
 
 router.post("/api/admin-delete", adminController.deleteFromUser);
+router.post("/api/admin-delete-gig", adminController.deleteGig);
 router.post("/api/admin-add-category", adminController.addCategory);
 router.post("/api/admin-add-subcategory", adminController.addSubCategory);
 router.post("/api/admin-delete-category", adminController.deleteCategory);
