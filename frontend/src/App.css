@@ -1082,13 +1082,13 @@ video {
   min-height: 10vh;
 }
 
-.min-h-screen{
-  min-height: 100vh;
-}
-
 .min-h-fit{
   min-height: -moz-fit-content;
   min-height: fit-content;
+}
+
+.min-h-screen{
+  min-height: 100vh;
 }
 
 .w-1\/2{
@@ -1853,16 +1853,6 @@ video {
 .py-9{
   padding-top: 2.25rem;
   padding-bottom: 2.25rem;
-}
-
-.py-8{
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-}
-
-.py-12{
-  padding-top: 3rem;
-  padding-bottom: 3rem;
 }
 
 .pb-10{
