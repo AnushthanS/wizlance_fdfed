@@ -1,4 +1,4 @@
-const AdvancedTable = ({ headings, rows, colorHead }) => {
+const AdvancedTable = ({ headings, rows, colorHead, isFreelancer }) => {
   return (
     <table className="w-full table-auto bg-white max-h-full overflow-scroll">
       <thead>
@@ -17,18 +17,18 @@ const AdvancedTable = ({ headings, rows, colorHead }) => {
         </tr>
       </thead>
       <tbody>
-        {rows.map((row, rowIndex) => (
-          <tr key={rowIndex}>
-            {row.map((cell, cellIndex) => (
-              <td
-                key={cellIndex}
-                className={`py-3 px-5 border-b break-words ${
-                  cellIndex === 0 && "font-bold "
-                }`}
-              >
-                {cell}
-              </td>
-            ))}
+        {rows?.map((row) => (
+          <tr key={row._id}>
+            <td className="py-3 px-5 border-b break-words font-bold">
+              {isFreelancer
+                ? row?.client?.firstName
+                : row?.freelancer?.firstName}
+            </td>
+            <td className="py-3 px-5 border-b break-words">{row?.gig?.name}</td>
+            <td className="py-3 px-5 border-b break-words">
+              {row?.gig?.price}
+            </td>
+            <td className="py-3 px-5 border-b break-words">{row?.details}</td>
           </tr>
         ))}
       </tbody>
