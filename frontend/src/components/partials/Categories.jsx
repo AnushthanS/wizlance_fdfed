@@ -1,47 +1,56 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Preloader } from '../animations';
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
   const [subcategories, setSubcategories] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const fetchCategories = async () => {
     try {
-        const response = await axios.get('/api/categories');
-        if (Array.isArray(response.data.categories)) {
-            setCategories(response.data.categories);
-        } else {
-            console.error(
-                "Fetched data is not an array:",
-                response.data.categories
-            );
-        }
+      const response = await axios.get('/api/categories');
+      if (Array.isArray(response.data.categories)) {
+        setCategories(response.data.categories);
+      } else {
+        console.error(
+          "Fetched data is not an array:",
+          response.data.categories
+        );
+      }
     } catch (error) {
-        console.error('Error fetching categories:', error.message);
+      console.error('Error fetching categories:', error.message);
     }
-}
+  }
 
-const fetchSubcategories = async () => {
-  try {
+  const fetchSubcategories = async () => {
+    try {
       const response = await axios.get('/api/admin-subcategories');
       if (Array.isArray(response.data.subcategories)) {
-          setSubcategories(response.data.subcategories);
+        setSubcategories(response.data.subcategories);
       } else {
-          console.error(
-              "Fetched data is not an array:",
-              response.data.categories
-          );
+        console.error(
+          "Fetched data is not an array:",
+          response.data.categories
+        );
       }
-  } catch (error) {
+    } catch (error) {
       console.error('Error fetching categories:', error.message);
+    }
   }
-}
 
-    useEffect(() => {
-        fetchCategories();
-        fetchSubcategories();
-    }, []); 
+  useEffect(() => {
+    const fetchData = async () => {
+      await fetchCategories();
+      await fetchSubcategories();
+      setLoading(false);
+    };
+    fetchData();
+  }, []);
 
+  if (loading) {
+    return <Preloader />;
+  }
 
   const addCategory = () => {
     const categoryName = window.prompt('Enter the name of the category:');
