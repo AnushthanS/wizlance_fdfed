@@ -4,8 +4,8 @@ import TopBar from "./TopBar";
 
 const Dashboard = () => {
   return (
-    <div className="h-screen w-screen flex">
-      <Sidebar />
+    <div className=" flex ">
+      <Sidebar  />
       <div className="flex-1 flex flex-col bg-gray-100">
         <TopBar />
         <div className="flex flex-1 flex-col mx-4 mb-4 box-border rounded-lg flex-wrap">

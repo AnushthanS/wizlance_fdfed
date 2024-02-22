@@ -32,7 +32,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/dashboard" element={<Dashboard />}>
-          {user.isFreelancer ? <Route index element={<IndexContent />} /> : <Route path="profile" index element={<ProfileContent />} />}
+          {user?.isFreelancer ? <Route index element={<IndexContent />} /> : <Route  index element={<ProfileContent />} />}
             <Route path="orders" element={<OrdersContent />} />
             <Route path="projects" element={<ProjectsContent />} />
          
@@ -41,7 +41,7 @@ const App = () => {
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/mainpage" element={<MainPage />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/payment" element={<Payment />} />
+          <Route path="/payment/:orderId" element={<Payment />} />
           <Route path="/gigdetails/:gigId" element={<ProfilePage />} />
           <Route path="/subcategories/:categoryId" element={<SubCategories />} />
           <Route path="/gigs/:subcategoryId" element={<ResultTemplate />} />
