@@ -1,10 +1,56 @@
 import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Preloader } from '../animations';
 
 const Categories = () => {
-  const [categories, setCategories] = useState([
-    { id: 1, name: 'Category 1', subcategories: ['Subcategory 1', 'Subcategory 2'] },
-    { id: 2, name: 'Category 2', subcategories: ['Subcategory 3', 'Subcategory 4'] },
-  ]);
+  const [categories, setCategories] = useState([]);
+  const [subcategories, setSubcategories] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const fetchCategories = async () => {
+    try {
+      const response = await axios.get('/api/categories');
+      if (Array.isArray(response.data.categories)) {
+        setCategories(response.data.categories);
+      } else {
+        console.error(
+          "Fetched data is not an array:",
+          response.data.categories
+        );
+      }
+    } catch (error) {
+      console.error('Error fetching categories:', error.message);
+    }
+  }
+
+  const fetchSubcategories = async () => {
+    try {
+      const response = await axios.get('/api/admin-subcategories');
+      if (Array.isArray(response.data.subcategories)) {
+        setSubcategories(response.data.subcategories);
+      } else {
+        console.error(
+          "Fetched data is not an array:",
+          response.data.categories
+        );
+      }
+    } catch (error) {
+      console.error('Error fetching categories:', error.message);
+    }
+  }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await fetchCategories();
+      await fetchSubcategories();
+      setLoading(false);
+    };
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return <Preloader />;
+  }
 
   const addCategory = () => {
     const categoryName = window.prompt('Enter the name of the category:');
@@ -63,25 +109,25 @@ const Categories = () => {
         </thead>
         <tbody>
           {categories.map((category) => (
-            <tr key={category.id}>
+            <tr key={category._id}>
               <td className="border p-4">{category.name}</td>
               <td className="border p-4">
                 <ul>
-                  {category.subcategories.map((subcategory, index) => (
+                  {subcategories.filter((subcategory) => subcategory.category._id === category._id).map((subcategory, index) => (
                     <li className="flex items-center justify-between border-b p-4" key={index}>
-                      {subcategory}
-                      <button className="bg-red-600 text-white p-2 rounded-md" onClick={() => deleteSubcategory(category.id, index)}>
+                      {subcategory.name}
+                      <button className="bg-red-600 text-white p-2 rounded-md" onClick={() => deleteSubcategory(category._id, index)}>
                         Delete Subcategory
                       </button>
                     </li>
                   ))}
                   <li className="flex justify-end p-4">
-                    <button className="bg-green-600 text-white p-2 rounded-md" onClick={() => addSubcategory(category.id)}>Add Subcategory</button>
+                    <button className="bg-green-600 text-white p-2 rounded-md" onClick={() => addSubcategory(category._id)}>Add Subcategory</button>
                   </li>
                 </ul>
               </td>
               <td className="border p-4">
-                <button className="bg-red-600 text-white p-2 rounded-md" onClick={() => deleteCategory(category.id)}>Delete Category</button>
+                <button className="bg-red-600 text-white p-2 rounded-md" onClick={() => deleteCategory(category._id)}>Delete Category</button>
               </td>
             </tr>
           ))}
