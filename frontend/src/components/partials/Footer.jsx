@@ -1,22 +1,36 @@
 const Footer = () => {
   return (
-    <footer className="bg-black text-white py-6">
+    <footer className="bg-black text-white p-6 mt-4">
       <div className="container mx-auto flex flex-wrap justify-between">
         <div className="w-full sm:w-auto mb-4 sm:mb-0">
           <h2 className="font-bold mb-2">Categories</h2>
           <ul className="font-thin">
-            <li><a href="/mainpage/Graphic Design">Graphics & Design</a></li>
-            <li><a href="/mainpage/Music Audio">Music Audio</a></li>
-            <li><a href="/mainpage/programming-tech">Programming and Tech</a></li>
-            <li><a href="/mainpage/photography">Photography</a></li>
-            <li><a href="/mainpage/Animation">Animation</a></li>
-            <li><a href="/mainpage/writing-translation">Writing</a></li>
+            <li>
+              <a href="/mainpage/Graphic Design">Graphics & Design</a>
+            </li>
+            <li>
+              <a href="/mainpage/Music Audio">Music Audio</a>
+            </li>
+            <li>
+              <a href="/mainpage/programming-tech">Programming and Tech</a>
+            </li>
+            <li>
+              <a href="/mainpage/photography">Photography</a>
+            </li>
+            <li>
+              <a href="/mainpage/Animation">Animation</a>
+            </li>
+            <li>
+              <a href="/mainpage/writing-translation">Writing</a>
+            </li>
           </ul>
         </div>
         <div className="w-full sm:w-auto mb-4 sm:mb-0">
           <h2 className="font-bold mb-2">Support</h2>
           <ul className="font-thin">
-            <li><a href="/contact">Contact Us</a></li>
+            <li>
+              <a href="/contact">Contact Us</a>
+            </li>
           </ul>
         </div>
       </div>

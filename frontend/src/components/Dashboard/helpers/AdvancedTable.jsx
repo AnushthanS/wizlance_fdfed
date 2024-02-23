@@ -29,8 +29,8 @@ const AdvancedTable = ({
               {isProject
                 ? row?.name
                 : isFreelancer
-                ? row?.client?.name
-                : row?.freelancer?.name}
+                ? row?.client?.firstName
+                : row?.freelancer?.firstName}
             </td>
             <td className="py-3 px-5 border-b break-words">
               {isProject ? row?.subCategoryId?.name : row?.gig?.name}
