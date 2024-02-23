@@ -107,7 +107,7 @@ const ProfilePage = () => {
 
                     <div className="text-center mt-32">
                       <h3 className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700">
-                        Nikunj Khinchi
+                        {gig?.freelancer?.firstName} {gig?.freelancer?.lastName}
                       </h3>
                       <div className="mb-2 text-blueGray-600 mt-6">
                         <i className="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>
@@ -128,7 +128,7 @@ const ProfilePage = () => {
                           </div>
                           <div className="mr-4 p-3 text-center">
                             <span className="text-2xl font-bold block uppercase tracking-wide text-blueGray-600">
-                              4.7
+                              {gig?.freelancer?.freelancerRating}
                             </span>
                             <span className="text-m text-blueGray-400">
                               Rating
@@ -136,14 +136,9 @@ const ProfilePage = () => {
                           </div>
                         </div>
                       </div>
-
-                      <span>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Quos voluptate suscipit doloribus facere iusto
-                        reprehenderit cupiditate adipisci quisquam. Ratione
-                        dolore, qui cupiditate magni sed eum repellendus minima.
-                        Fugiat, veritatis soluta.
-                      </span>
+                      <p className="text-2xl font-semibold">{gig?.name}</p>
+                      <br />
+                      <span>{gig?.description}</span>
                     </div>
 
                     <div className="w-full flex items-center justify-center">
@@ -164,7 +159,7 @@ const ProfilePage = () => {
                       <div className="flex flex-wrap justify-center">
                         <div className="w-full lg:w-9/12 px-4">
                           <p className="mb-4 text-lg leading-relaxed text-blueGray-700">
-                            <b>Price:</b> $ 50/hr
+                            <b>Price:</b> $ {gig?.price}
                           </p>
                           <div className="py-3 px-3 mt-16 sm:mt-0">
                             <button
