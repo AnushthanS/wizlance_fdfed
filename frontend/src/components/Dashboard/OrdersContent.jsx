@@ -10,6 +10,7 @@ const OrdersContent = () => {
     "Service Name",
     "Price",
     "Description",
+    "Status",
   ];
 
   const [orders, setOrders] = useState([]);

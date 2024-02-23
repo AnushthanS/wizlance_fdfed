@@ -1,4 +1,4 @@
-const Table = ({ headings, rows, colorHead }) => {
+const Table = ({ headings, rows, colorHead, isIndexContent }) => {
   return (
     <table className="w-5/6 table-auto bg-white max-h-full overflow-scroll">
       <thead>
@@ -18,17 +18,31 @@ const Table = ({ headings, rows, colorHead }) => {
       </thead>
       <tbody>
         {rows.map((row, rowIndex) => (
-          <tr key={rowIndex}>
-            {row.map((cell, cellIndex) => (
-              <td
-                key={cellIndex}
-                className={`py-2 px-4 border-b break-words ${
-                  cellIndex === 0 && "font-bold "
-                }`}
-              >
-                {cell}
-              </td>
-            ))}
+          <tr key={row?._id ? row?._id : rowIndex}>
+            {isIndexContent ? (
+              <>
+                <td className={"py-2 px-4 border-b break-words"}>
+                  {row?.gig?.name}
+                </td>
+                <td className={"py-2 px-4 border-b break-words"}>
+                  {row?.client?.firstName}
+                </td>
+                <td className={"py-2 px-4 border-b break-words"}>
+                  {row?.status}
+                </td>
+              </>
+            ) : (
+              row.map((cell, cellIndex) => (
+                <td
+                  key={cellIndex}
+                  className={`py-2 px-4 border-b break-words ${
+                    cellIndex === 0 && "font-bold "
+                  }`}
+                >
+                  {cell}
+                </td>
+              ))
+            )}
           </tr>
         ))}
       </tbody>
