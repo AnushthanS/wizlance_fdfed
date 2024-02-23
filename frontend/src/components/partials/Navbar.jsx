@@ -49,11 +49,13 @@ const Navbar = ({ showlink, isLanding }) => {
                   </li>
                 ) : (
                   <>
-                    <li
-                      className={`text-white text-[18px] font-medium cursor-pointer`}
-                    >
-                      <Link to={"/dashboard"}>Dashboard</Link>
-                    </li>
+                    {user?.isAdmin ? null : (
+                      <li
+                        className={`text-white text-[18px] font-medium cursor-pointer`}
+                      >
+                        <Link to={"/dashboard"}>Dashboard</Link>
+                      </li>
+                    )}
                     <li
                       className={`text-red-500 text-[18px] font-medium cursor-pointer`}
                       onClick={handleLogout}
