@@ -3,19 +3,32 @@ import { faListCheck, faAdd } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Table from "./helpers/Table";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useSelector } from "react-redux";
 
 const IndexContent = () => {
+  const user = useSelector((state) => state?.user);
+
   const headings = ["Title", "Client", "Status"];
-  const rows = [
-    ["WizLance Dashboard Creation", "Group 13", "Active"],
-    ["Project X Updates", "Company ABC", "Pending"],
-    ["Mobile App Development", "Client XYZ", "Completed"],
-    ["Website Redesign", "Startup Co.", "On Hold"],
-    ["E-commerce Platform Launch", "Retailer Inc.", "Active"],
-    ["Data Analysis Tool Development", "Tech Solutions", "In Progress"],
-    ["Blog Redesign", "Media Company", "Draft"],
-    ["Social Media Campaign", "Marketing Agency", "Scheduled"],
-  ];
+
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    axios
+      .post(
+        "/api/getOrders",
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${user?.token}`,
+          },
+        }
+      )
+      .then((res) => {
+        setOrders(res.data.orders);
+      });
+  }, []);
 
   return (
     <>
@@ -33,7 +46,7 @@ const IndexContent = () => {
               <p className="text-3xl font-bold pl-32 py-9">Active projects</p>
             </Link>
             <div className="flex justify-center py-3 h-[280px] overflow-auto">
-              <Table headings={headings} rows={rows} />
+              <Table headings={headings} rows={orders} isIndexContent={true} />
             </div>
           </div>
         </div>
@@ -57,7 +70,6 @@ const IndexContent = () => {
           </div>
         </div>
       </div>
-      
     </>
   );
 };

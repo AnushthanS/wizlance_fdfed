@@ -7,6 +7,12 @@ const isAuth = require("../middleware/is-auth");
 const router = express.Router();
 
 router.post("/api/getOrders", isAuth, dashboardController.getOrders);
+router.post("/api/getProjects", isAuth, dashboardController.getProjects);
+router.post(
+  "/api/getFreelancerStats",
+  isAuth,
+  dashboardController.getFreelancerDashboardDetails
+);
 
 router.post("/api/search", otherFuncController.postSearchCategories);
 router.post(

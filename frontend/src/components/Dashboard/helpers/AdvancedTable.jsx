@@ -1,6 +1,12 @@
-const AdvancedTable = ({ headings, rows, colorHead, isFreelancer }) => {
+const AdvancedTable = ({
+  headings,
+  rows,
+  colorHead,
+  isFreelancer,
+  isProject,
+}) => {
   return (
-    <table className="w-full table-auto bg-white max-h-full overflow-scroll">
+    <table className="w-full table-auto bg-white max-h-14 overflow-scroll">
       <thead>
         <tr>
           {headings?.length > 0 &&
@@ -18,17 +24,26 @@ const AdvancedTable = ({ headings, rows, colorHead, isFreelancer }) => {
       </thead>
       <tbody>
         {rows?.map((row) => (
-          <tr key={row._id}>
+          <tr key={row._id} className="max-h-14">
             <td className="py-3 px-5 border-b break-words font-bold">
-              {isFreelancer
-                ? row?.client?.firstName
-                : row?.freelancer?.firstName}
+              {isProject
+                ? row?.name
+                : isFreelancer
+                ? row?.client?.name
+                : row?.freelancer?.name}
             </td>
-            <td className="py-3 px-5 border-b break-words">{row?.gig?.name}</td>
             <td className="py-3 px-5 border-b break-words">
-              {row?.gig?.price}
+              {isProject ? row?.subCategoryId?.name : row?.gig?.name}
             </td>
-            <td className="py-3 px-5 border-b break-words">{row?.details}</td>
+            <td className="py-3 px-5 border-b break-words">
+              {isProject ? row?.price : row?.gig?.price}
+            </td>
+            <td className="py-3 px-5 border-b break-words">
+              {isProject ? row?.description : row?.details}
+            </td>
+            {!isProject && (
+              <td className="py-3 px-5 border-b break-words">{row?.status}</td>
+            )}
           </tr>
         ))}
       </tbody>

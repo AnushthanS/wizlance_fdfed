@@ -1,13 +1,12 @@
+import { useEffect, useState } from "react";
 import AdvancedTable from "./helpers/AdvancedTable";
+import axios from "axios";
+import { useSelector } from "react-redux";
 
 const ProjectsContent = () => {
-  const headings = [
-    "Project Name",
-    "Sub Category",
-    "Price",
-    "Description",
-    "Status",
-  ];
+  const user = useSelector((state) => state?.user);
+  const [projects, setProjects] = useState([]);
+  const headings = ["Project Name", "Sub Category", "Price", "Description"];
   const rows = [
     [
       "Web Development",
@@ -151,11 +150,28 @@ const ProjectsContent = () => {
     ],
   ];
 
+  useEffect(() => {
+    axios
+      .post(
+        "/api/getProjects",
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${user?.token}`,
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res.data);
+        setProjects(res?.data?.projects);
+      });
+  }, []);
+
   return (
     <div className="flex flex-1 flex-col">
       <h1 className="text-3xl font-bold p-4">Your Projects</h1>
       <div className="flex justify-center p-6  overflow-y-scroll h-[35rem] ">
-        <AdvancedTable rows={rows} headings={headings} />
+        <AdvancedTable rows={projects} headings={headings} isProject={true} />
       </div>
     </div>
   );
