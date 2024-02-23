@@ -13,16 +13,24 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
+  const [user, setUser] = useState(null);
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      await dispatch(fetchUser({ email, password }));
-      navigate("/mainpage");
+      const resp = await dispatch(fetchUser({ email, password }));
+      const userData = resp.payload.user;
+      console.log(userData);
+      setUser(userData);
+      setError(false);
+
+      navigate('/mainpage');
     } catch (error) {
       console.error("Login failed:", error);
+      setError(true);
     } finally {
       setLoading(false);
       setEmail("");
@@ -33,6 +41,8 @@ const Login = () => {
   return (
     <>
       <Navbar showlink={false} />
+
+      {error && <span className='text-center font-light text-xl text-red-700'>Invalid login credentials</span>}
 
       <div className='my-20 m-auto max-w-6xl flex flex-wrap justify-around p-[10px] border-[#ccc] border-2 rounded-[25px] shadow-[0_0px_20px_rgba(0,0,0,0.1)] text-black w-[70vw]'>
 

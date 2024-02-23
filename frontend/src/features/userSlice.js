@@ -7,17 +7,21 @@ const initialState = {
   error: "",
 };
 
-export const fetchUser = createAsyncThunk("user/fetchUser", (payload) => {
+export const fetchUser = createAsyncThunk("user/fetchUser", async (payload) => {
   const email = payload.email;
   const password = payload.password;
 
   console.log("Payload = ", payload);
-  return axios
-    .post("/api/login", { email, password })
-    .then((response) => {
-      return response.data;
-    })
-    .catch((err) => console.log("Error in thunk", err));
+  try {
+    const response = await axios.post("/api/login", { email, password });
+    return response.data;
+  } catch (error) {
+    if (error.response && error.response.status === 401) {
+      throw new Error("Invalid login credentials");
+    } else {
+      throw error;
+    }
+  }
 });
 
 const userSlice = createSlice({
