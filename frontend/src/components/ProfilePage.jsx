@@ -9,9 +9,11 @@ const ProfilePage = () => {
   const gigId = useLocation().pathname.replace("/gigdetails/", "");
 
   const navigate = useNavigate();
-  const token = useSelector((state) => state?.user?.token);
+  const user = useSelector((state) => state?.user);
 
   const [gig, setGig] = useState({});
+
+  const [moreDetails, setMoreDetails] = useState("");
 
   const handleHire = () => {
     axios
@@ -20,11 +22,11 @@ const ProfilePage = () => {
         {
           gigId,
           freelancerId: gig.freelancer,
-          details: "Some details",
+          details: moreDetails,
         },
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${user?.token}`,
           },
         }
       )
@@ -144,6 +146,20 @@ const ProfilePage = () => {
                       </span>
                     </div>
 
+                    <div className="w-full flex items-center justify-center">
+                      <textarea
+                        name="details"
+                        value={moreDetails}
+                        onChange={(e) => setMoreDetails(e.target.value)}
+                        id=""
+                        cols="80"
+                        rows="5"
+                        className="border-2 border-blueGray-200 p-4 mt-10"
+                        placeholder="Enter more details about your project requirements here..."
+                        required
+                      ></textarea>
+                    </div>
+
                     <div className="mt-20 py-10 border-t border-blueGray-200 text-center">
                       <div className="flex flex-wrap justify-center">
                         <div className="w-full lg:w-9/12 px-4">
@@ -153,7 +169,10 @@ const ProfilePage = () => {
                           <div className="py-3 px-3 mt-16 sm:mt-0">
                             <button
                               onClick={handleHire}
-                              className="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"
+                              className="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                              disabled={
+                                gig?.freelancer?._id === user?.user?._id
+                              }
                             >
                               <i className="mdi mdi-lock-outline mr-1"></i> Hire
                             </button>

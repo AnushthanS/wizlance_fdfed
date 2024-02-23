@@ -16,10 +16,10 @@ const subcategory = require("../models/subcategory");
 
 // user api
 exports.displayUsers = async (req, res) => {
-    const users = await  User.find({}, { password: 0 });
-    res.status(200).json({
-      users,
-    });
+  const users = await User.find({}, { password: 0 });
+  res.status(200).json({
+    users,
+  });
 };
 
 
@@ -82,7 +82,7 @@ exports.displayGigs = async (req, res) => {
 exports.deleteFromUser = (req, res) => {
   const requiredMail = req.body.deleteFromEmail;
   User.findOneAndRemove({ email: requiredMail }).then((user) => {
-    if (user.isFreelancer) {
+    if (user?.isFreelancer) {
       Gig.deleteMany({ freelancerEmail: user.email }).then();
     }
   });

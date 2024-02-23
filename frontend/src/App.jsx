@@ -32,7 +32,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/dashboard" element={<Dashboard />}>
-          {user?.isFreelancer ? <Route index element={<IndexContent />} /> : <Route path="profile" index element={<ProfileContent />} />}
+          {user?.isFreelancer ? <Route index element={<IndexContent />} /> : <Route  index element={<ProfileContent />} />}
             <Route path="orders" element={<OrdersContent />} />
             <Route path="projects" element={<ProjectsContent />} />
          
@@ -46,10 +46,10 @@ const App = () => {
           <Route path="/subcategories/:categoryId" element={<SubCategories />} />
           <Route path="/gigs/:subcategoryId" element={<ResultTemplate />} />
 
-          {/* Catch-all route for unmatched routes */}
-          <Route path="*" element={<Error />} />
-        </Routes>
-      </BrowserRouter>
+        {/* Catch-all route for unmatched routes */}
+        <Route path="*" element={<Error />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 export default App;

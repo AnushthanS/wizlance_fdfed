@@ -73,7 +73,10 @@ exports.getGigDetails = async (req, res, next) => {
   const gigId = req.body.gigId;
 
   try {
-    const gig = await Gig.findById(gigId);
+    const gig = await Gig.findById(gigId).populate([
+      "freelancer",
+      "subCategoryId",
+    ]);
     if (!gig) {
       const err = new Error("No gig found");
       err.statusCode = 404;
