@@ -166,6 +166,7 @@ app.use((error, req, res, next) => {
   const status = error?.statusCode || 500;
   const message = error.message || 'An error occurred';
   const data = error.data || null;
+  console.log("Debug: ",data, message, status)
   res.status(status).json({ message, data });
 });
 

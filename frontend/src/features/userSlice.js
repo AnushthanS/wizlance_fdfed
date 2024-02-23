@@ -16,6 +16,7 @@ export const fetchUser = createAsyncThunk("user/fetchUser", async (payload) => {
     const response = await axios.post("/api/login", { email, password });
     return response.data;
   } catch (error) {
+    console.log(error)
     if (error.response && error.response.status === 401) {
       throw new Error("Invalid login credentials");
     } else {
