@@ -5,6 +5,13 @@ const config = defineConfig({
   plugins: [react()],
   server: {
     host: true,
+    proxy: {
+          '/api': {
+            target: 'https://wizlance-fdfed.onrender.com',
+            changeOrigin: true,
+            secure: false,
+          }
+        },
   },
 })
 
