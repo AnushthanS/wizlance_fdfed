@@ -18,6 +18,7 @@ Dependencies.sh
 
 Runner.sh 
     This script starts the server for the Wizlance application. 
-    The application will be accessible at http://localhost:5173/
 
 Then application will start on http://localhost:5173/
+
+**Backend url: 'https://wizlance-fdfed.onrender.com'**

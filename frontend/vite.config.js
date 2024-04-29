@@ -6,7 +6,8 @@ const config = defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: `http://localhost:3000`,
+        // target: `http://localhost:3000`,
+        target: 'https://wizlance-fdfed.onrender.com',
         changeOrigin: true,
         secure: false,
       }
