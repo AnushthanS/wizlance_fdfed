@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 
-const backendUrl = 'http://localhost:3000'
+const backendUrl = 'https://wizlance-fdfed.onrender.com'
 const userLogin = createAsyncThunk(
     'auth/login',
     async ({ email, password }, { rejectWithValue }) => {

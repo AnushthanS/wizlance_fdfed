@@ -121,7 +121,7 @@ const SellerForm = () => {
       formDataWithImage.append('price', formData.price);
       formDataWithImage.append('image', event.target.image.files[0]);
 
-      const response = await fetch('http://localhost:3000/api/addGigs', {
+      const response = await fetch('/api/addGigs', {
         method: 'POST',
         body: formDataWithImage,
       });

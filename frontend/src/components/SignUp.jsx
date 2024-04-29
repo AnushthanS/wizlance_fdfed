@@ -19,7 +19,7 @@ const SignUp = () => {
     console.log('Password:', password);
 
     // Send data to backend
-    axios.put('http://localhost:3000/api/signup', { firstName: fname, lastName: lname, email, password })
+    axios.put('/api/signup', { firstName: fname, lastName: lname, email, password })
       .then((res) => {
         console.log('Signup successful' , res.data);
         // Optionally, redirect to another page or show a success message
