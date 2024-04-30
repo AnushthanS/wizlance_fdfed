@@ -5,85 +5,89 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 
 exports.signup = async (req, res, next) => {
-  const errors = validationResult(req);
+    const errors = validationResult(req);
 
-  const firstName = req.body.firstName;
-  const lastName = req.body.lastName;
-  const email = req.body.email;
-  const password = req.body.password;
+    const firstName = req.body.firstName;
+    const lastName = req.body.lastName;
+    const email = req.body.email;
+    const password = req.body.password;
 
-  try {
-    if (!errors.isEmpty()) {
-      const err = new Error("Validation failed");
-      err.statusCode = 422;
-      err.data = errors.array();
-      throw err;
+    console.log("Email = ", email);
+
+    try {
+        if (!errors.isEmpty()) {
+            const err = new Error("Validation failed");
+            err.statusCode = 422;
+            err.data = errors.array();
+            throw err;
+        }
+
+        const hashedPassword = await bcrypt.hash(password, 12);
+        const user = new User({
+            firstName,
+            lastName,
+            email,
+            password: hashedPassword,
+        });
+
+        const result = await user.save();
+
+        res.status(201).json({
+            message: "User signed up successfully",
+            userId: result._id.toString(),
+        });
+    } catch (error) {
+        if (!error.statusCode) {
+            error.statusCode = 500;
+        }
+        next(error);
     }
-
-    const hashedPassword = await bcrypt.hash(password, 12);
-    const user = new User({
-      firstName,
-      lastName,
-      email,
-      password: hashedPassword,
-    });
-
-    const result = await user.save();
-
-    res.status(201).json({
-      message: "User signed up successfully",
-      userId: result._id.toString(),
-    });
-  } catch (error) {
-    if (!error.statusCode) {
-      error.statusCode = 500;
-    }
-    next(error);
-  }
 };
 
 exports.login = async (req, res, next) => {
-  const email = req.body.email;
-  const password = req.body.password;
+    const email = req.body.email;
+    const password = req.body.password;
 
-  console.log("Email = ", email);
-  console.log("Password = ", password);
+    console.log("Email = ", email);
+    console.log("Password = ", password);
 
-  try {
-    const user = await User.findOne({ email });
-    if (!user) {
-      const err = new Error("No user with this email exists");
-      err.statusCode = 401;
-      throw err;
+    try {
+        const user = await User.findOne({ email });
+        if (!user) {
+            const err = new Error("No user with this email exists");
+            console.log("No user with this email exists");
+            err.statusCode = 401;
+            throw err;
+        }
+
+        const isValid = await bcrypt.compare(password, user.password);
+        if (!isValid) {
+            const err = new Error("Incorrect password");
+            console.log("Incorrect password");
+            err.statusCode = 401;
+            throw err;
+        }
+        const token = jwt.sign(
+            {
+                userId: user._id,
+                firstName: user.firstName,
+            },
+            "wizlance",
+            { expiresIn: "7d" }
+        );
+
+        console.log(user.firstName);
+
+        res.status(200).json({
+            token,
+            user,
+        });
+    } catch (error) {
+        if (!error.statusCode) {
+            error.statusCode = 500;
+        }
+        next(error);
     }
-
-    const isValid = await bcrypt.compare(password, user.password);
-    if (!isValid) {
-      const err = new Error("Incorrect password");
-      err.statusCode = 401;
-      throw err;
-    }
-    const token = jwt.sign(
-      {
-        userId: user._id,
-        firstName: user.firstName,
-      },
-      "wizlance",
-      { expiresIn: "7d" }
-    );
-
-    console.log(user.firstName);
-
-    res.status(200).json({
-      token,
-      user,
-    });
-  } catch (error) {
-    if (!error.statusCode) {
-      error.statusCode = 500;
-    }
-    next(error);
-  }
 };
 
 // exports.getLogin = (req, res, next) => {
