@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Navbar, Hero, VerticalCard, Footer } from "./partials/index";
 import axios from "axios";
-import { Preloader } from "./animations/index";
+import { Circles } from "react-loader-spinner";
 
 const Landing = () => {
     const [categories, setCategories] = useState([]);
@@ -10,7 +10,7 @@ const Landing = () => {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const response = await axios.get('/api/categories');
+                const response = await axios.get("/api/categories");
                 if (Array.isArray(response.data.categories)) {
                     setCategories(response.data.categories);
                 } else {
@@ -20,16 +20,26 @@ const Landing = () => {
                     );
                 }
             } catch (error) {
-                console.error('Error fetching categories:', error.message);
+                console.error("Error fetching categories:", error.message);
             } finally {
                 setLoading(false);
             }
-        }
+        };
         fetchCategories();
-    }, []); 
-    
+    }, []);
+
     if (loading) {
-        return <Preloader />; //Preloader for content images
+        return (
+            <Circles
+                height="100"
+                width="100"
+                color="#7D7D7D"
+                ariaLabel="circles-loading"
+                wrapperStyle={{}}
+                wrapperClass="w-full flex justify-center items-center h-screen"
+                visible={true}
+            />
+        );
     }
 
     return (
@@ -68,6 +78,6 @@ const Landing = () => {
             <Footer />
         </>
     );
-}
+};
 
 export default Landing;

@@ -1,5 +1,3 @@
-// Path: wizlance_fdfed/frontend/src/components/Signup.jsx
-
 import login2 from '../assets/images/login2.jpg'
 import { useState } from "react";
 import { Footer, Navbar } from "./partials";
