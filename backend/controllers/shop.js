@@ -3,6 +3,7 @@ const SubCategories = require("../models/subcategory")
 const Gig = require("../models/gig");
 const User = require("../models/user");
 const Order = require("../models/order");
+const client = require("../Redis/client");
 
 exports.getSubCategory = async (req, res, next) => {
   const subCategoryId = req.body.subCategoryId;
@@ -22,6 +23,13 @@ exports.getCategoryImg = async (req, res, next) => {
 
 exports.getCategories = async (req, res, next) => {
   const categories = await Categories.find({}, " _id name imageUrl");
+  
+  const key = req.originalUrl;
+ 
+// Seting the data to Redis
+  await client.set(key, JSON.stringify(categories));
+  
+  console.log("\nFetching from Database");
   res.status(200).json({
     categories,
   });
