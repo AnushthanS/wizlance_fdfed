@@ -8,7 +8,7 @@ import MainCarousel from "./MainCarousel";
 import Users from "./Users";
 import Gigs from "./Gigs";
 import Categories from "./Categories";
-import Messages from "./Messages";
+import AllGigs from "./AllGigs";
 
 export {
     Hero,
@@ -21,5 +21,5 @@ export {
     Users,
     Gigs,
     Categories,
-    Messages
-}
+    AllGigs,
+};
