@@ -4,16 +4,8 @@ const Gig = require("../models/gig");
 const SubCategories = require("../models/subcategory");
 const client = require("../Redis/client");
 
-// const Messages = require("../models/messages");
-
 const nodemailer = require("nodemailer");
 const subcategory = require("../models/subcategory");
-
-// exports.displayUsers = (req, res) => {
-//   User.find({}, { password: 0 }).then((users) => {
-//     return res.render("pages/display-details", { users });
-//   });
-// };
 
 // user api
 exports.displayUsers = async (req, res) => {
@@ -25,7 +17,20 @@ exports.displayUsers = async (req, res) => {
 
 exports.deleteGig = async (req, res) => {
     const gigId = req.body.gigId;
-    Gig.findByIdAndRemove(gigId).then(() => res.status(200));
+    await Gig.findByIdAndRemove(gigId);
+    res.status(200).json({
+        message: "Gig deleted successfully",
+    });
+};
+
+exports.searchGigs = async (req, res) => {
+    const searchQuery = req.body.searchQuery;
+    const gigs = await Gig.find({
+        name: { $regex: searchQuery, $options: "i" },
+    });
+    res.status(200).json({
+        gigs,
+    });
 };
 
 exports.displayCategories = async (req, res) => {
@@ -102,6 +107,21 @@ exports.displayGigs = async (req, res) => {
             gigs = await Gig.find({});
     }
 
+    res.status(200).json({
+        gigs,
+    });
+};
+
+exports.allGigs = async (req, res) => {
+    const gigs = await Gig.find({})
+        .populate({
+            path: "subCategoryId",
+            select: "name",
+        })
+        .populate({
+            path: "freelancer",
+            select: "firstName",
+        });
     res.status(200).json({
         gigs,
     });
