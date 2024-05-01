@@ -1124,10 +1124,6 @@ video {
   width: 3rem;
 }
 
-.w-16{
-  width: 4rem;
-}
-
 .w-2\/3{
   width: 66.666667%;
 }
@@ -1932,6 +1928,10 @@ video {
   padding-bottom: 1.25rem;
 }
 
+.pb-6{
+  padding-bottom: 1.5rem;
+}
+
 .pl-12{
   padding-left: 3rem;
 }
@@ -1986,10 +1986,6 @@ video {
 
 .pt-8{
   padding-top: 2rem;
-}
-
-.pb-6{
-  padding-bottom: 1.5rem;
 }
 
 .text-left{
@@ -2352,16 +2348,16 @@ video {
   transition-duration: 150ms;
 }
 
+.duration-150{
+  transition-duration: 150ms;
+}
+
 .duration-200{
   transition-duration: 200ms;
 }
 
 .duration-300{
   transition-duration: 300ms;
-}
-
-.duration-150{
-  transition-duration: 150ms;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */

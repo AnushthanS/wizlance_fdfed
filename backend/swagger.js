@@ -6,9 +6,9 @@ function swaggerDocs(app, port) {
         definition: {
             openapi: '3.0.0',
             info: {
-                title: 'FitWell API',
+                title: 'Wizlance API',
                 version: '1.0.0',
-                description: 'API required for a fitness application',
+                description: 'API required for wizlance application',
             },
             servers: [
                 {
@@ -18,10 +18,9 @@ function swaggerDocs(app, port) {
         },
         apis: ['./routes/*.js'],
     };
-    
+
     const swaggerSpec = swaggerJsdoc(options);
-    
-    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 }
 
 module.exports = swaggerDocs;
