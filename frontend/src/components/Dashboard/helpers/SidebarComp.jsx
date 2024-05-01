@@ -7,7 +7,7 @@ const SidebarComp = ({ to, tabName, tabIcon }) => {
     <Link
       to={to}
       className={`px-4 py-2 cursor-pointer rounded-md mx-4 my-1 flex gap-3 items-center ${
-        location.pathname === to ? "bg-purple-800" : ""
+        location.pathname === to ? "bg-gray-700" : ""
       }`}
     >
       <div className="flex gap-3 items-center">

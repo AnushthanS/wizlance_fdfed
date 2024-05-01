@@ -8,7 +8,7 @@ router.get("/api/admin-dashboard", adminController.getDashboard);
 router.get("/api/admin-users", adminController.displayUsers);
 router.get("/api/admin-categories", adminController.displayCategories);
 router.get("/api/admin-subcategories", adminController.displaySubCategories);
-router.get("/api/admin-gigs", adminController.displayGigs);
+router.post("/api/admin-gigs", adminController.displayGigs);
 // router.get("/api/admin-messages", adminController.displayMessages);
 
 router.post("/api/admin-delete", adminController.deleteFromUser);

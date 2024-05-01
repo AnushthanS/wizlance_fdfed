@@ -30,6 +30,8 @@
     "nodemon": "^3.0.1",
     "npm": "^10.1.0",
     "require": "^0.4.4",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0",
     "tailwindcss": "^3.3.3",
     "uuid": "^9.0.1"
   }

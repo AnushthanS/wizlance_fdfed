@@ -7,6 +7,7 @@ const morgan = require("morgan");
 const mongoose = require("mongoose");
 const multer = require("multer");
 const cors = require("cors");
+const swaggerDocs = require("./swagger");
 
 const corsOptions = require("./config/corsOptions");
 const mainRoutes = require("./routes/main");
@@ -75,14 +76,15 @@ app.use((error, req, res, next) => {
   res.status(status).json({ message, data });
 });
 
-app.use((req, res, next) => {
-  res.status(404).sendFile(path.join(__dirname, "views", "404.html"));
-});
+// app.use((req, res, next) => {
+//   res.status(404).sendFile(path.join(__dirname, "views", "404.html"));
+// });
 
 mongoose
   .connect(MONGODB_URI)
   .then(() => {
     app.listen(3000, () => {
+      swaggerDocs(app, 3000);
       console.log("Server listening at 3000");
     });
   })
