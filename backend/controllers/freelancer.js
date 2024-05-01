@@ -3,12 +3,15 @@ const User = require("../models/user");
 const Gig = require("../models/gig");
 const SubCategory = require("../models/subcategory");
 const Skill = require("../models/skill");
-// Cloudinary credentials
+
+// cloudinary setup
 cloudinary.config({
-  cloud_name:"dlvssvmha",
-  api_key: "848491867629591",
-  api_secret: "rJH9KrrLg19b_1qRGLNtaQCe6Ec",
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_CLOUD_API_KEY,
+  api_secret: process.env.CLOUDINARY_CLOUD_API_SECRET,
 });
+
+
 // addGig Updated
 exports.addGigs = async (req, res) => {
   try {
