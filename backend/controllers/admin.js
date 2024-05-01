@@ -2,6 +2,7 @@ const User = require("../models/user");
 const Category = require("../models/category");
 const Gig = require("../models/gig");
 const SubCategories = require("../models/subcategory");
+const client = require("../Redis/client");
 
 const nodemailer = require("nodemailer");
 const subcategory = require("../models/subcategory");
@@ -36,6 +37,12 @@ exports.displayCategories = async (req, res) => {
     try {
         const categories = await Category.find({});
         console.log("Fetched categories:", categories);
+
+        const key = req.originalUrl;
+        // Seting the data to Redis
+        await client.set(key, JSON.stringify(categories));
+        console.log(key, "\nFetching from Database");
+
         res.status(200).json({
             categories,
         });
@@ -48,6 +55,11 @@ exports.displayCategories = async (req, res) => {
 exports.displaySubCategories = async (req, res, next) => {
     try {
         const subCategories = await SubCategories.find({});
+
+        const key = req.originalUrl;
+        // Seting the data to Redis
+        await client.set(key, JSON.stringify(subCategories));
+        console.log(key, "\nFetching from Database");
 
         if (!subCategories) {
             const err = new Error("No subcategories found");
@@ -82,6 +94,7 @@ exports.displayGigs = async (req, res) => {
     const type = req.body.type;
     const id = req.body.id;
 
+ 
     let gigs;
     switch (type) {
         case "subcategory":

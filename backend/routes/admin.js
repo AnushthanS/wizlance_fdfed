@@ -1,13 +1,14 @@
 const express = require("express");
 const adminController = require("../controllers/admin");
 const ajaxController = require("../controllers/ajax");
+const cacheData = require("../middleware/redisCacheData");
 
 const router = express.Router();
 
 router.get("/api/admin-dashboard", adminController.getDashboard);
 router.get("/api/admin-users", adminController.displayUsers);
-router.get("/api/admin-categories", adminController.displayCategories);
-router.get("/api/admin-subcategories", adminController.displaySubCategories);
+router.get("/api/admin-categories", cacheData, adminController.displayCategories);
+router.get("/api/admin-subcategories", cacheData, adminController.displaySubCategories);
 router.post("/api/admin-gigs", adminController.displayGigs);
 router.get("/api/all-gigs", adminController.allGigs);
 
