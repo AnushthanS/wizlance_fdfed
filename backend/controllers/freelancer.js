@@ -65,16 +65,36 @@
 // };
 
 
-
+const cloudinary = require("cloudinary").v2;
 const User = require("../models/user");
 const Category = require("../models/category");
 const Gig = require("../models/gig");
 const SubCategory = require("../models/subcategory"); // Import SubCategory model
 
+cloudinary.config({
+  cloud_name:"dlvssvmha",
+  api_key: "848491867629591",
+  api_secret: "rJH9KrrLg19b_1qRGLNtaQCe6Ec",
+});
+
 exports.addGigs = async (req, res) => {
   try {
-    const { email, gig, category, subCategory, description, price } = req.body;
+    const { email, gig, category, subCategory, description, price ,image } = req.body;
     const imageUrl = req.file.path;
+    console.log(req.file);
+    console.log(subCategory);
+
+    // cloudinary setup
+    
+    let date = new Date();
+    let dateStr = `${date.getDate()}-${date.getMonth()+1}-${date.getFullYear()}`;
+    
+    const uploadedResponse = await cloudinary.uploader.upload(imageUrl, {
+      folder: 'wizlance-gig',
+      public_id: `${dateStr}--${gig}--${subCategory}`
+    });
+
+    const cloudinaryImageUrl = uploadedResponse.secure_url;
 
       // Find the user's id based on their email
       const user = await User.findOne({ email });
@@ -96,7 +116,7 @@ exports.addGigs = async (req, res) => {
       name: gig,
       price: price,
       freelancer: user._id, // Assign the User ID
-      imageUrl,
+      imageUrl: cloudinaryImageUrl,
       description: description,
       subCategoryId: subCategoryObj._id, // Assign the SubCategory ID
     });
