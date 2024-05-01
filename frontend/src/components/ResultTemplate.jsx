@@ -46,7 +46,7 @@ const ResultTemplate = () => {
                                         <div key={gig.name} className="lg:w-1/4 md:w-1/3 p-4 w-2/3 border-2 m-2 rounded-lg">
                                             {loggedIn ? (
                                                 <Link className="block relative h-52 rounded overflow-hidden" to={`/gigdetails/${gig._id}`}>
-                                                    <img alt="ecommerce" className="object-cover object-center w-full h-full block" src={ `/${gig.imageUrl}`} />
+                                                    <img alt="ecommerce" className="object-cover object-center w-full h-full block" src={ `${gig.imageUrl}`} />
                                                 </Link>
                                             ) : (
                                                 <Link className="block relative h-52 rounded overflow-hidden" to="/signup">

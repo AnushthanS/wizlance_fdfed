@@ -1,40 +1,60 @@
+const cloudinary = require("cloudinary").v2;
 const User = require("../models/user");
 const Gig = require("../models/gig");
 const SubCategory = require("../models/subcategory");
 const Skill = require("../models/skill");
-
+// Cloudinary credentials
+cloudinary.config({
+  cloud_name:"dlvssvmha",
+  api_key: "848491867629591",
+  api_secret: "rJH9KrrLg19b_1qRGLNtaQCe6Ec",
+});
+// addGig Updated
 exports.addGigs = async (req, res) => {
-    try {
-        const { email, gig, category, subCategory, description, price } =
-            req.body;
-        const imageUrl = req.file.path;
+  try {
+    const { email, gig, category, subCategory, description, price ,image } = req.body;
+    const imageUrl = req.file.path;
+    console.log(req.file);
+    console.log(subCategory);
 
-        // Find the user's id based on their email
-        const user = await User.findOne({ email });
-        console.log(user, "user");
+    // cloudinary setup
+    
+    let date = new Date();
+    let dateStr = `${date.getDate()}-${date.getMonth()+1}-${date.getFullYear()}`;
+    
+    const uploadedResponse = await cloudinary.uploader.upload(imageUrl, {
+      folder: 'wizlance-gig',
+      public_id: `${dateStr}--${gig}--${subCategory}`
+    });
 
-        if (!user) {
-            return res.status(404).json({ message: "User not found" });
-        }
+    const cloudinaryImageUrl = uploadedResponse.secure_url;
 
-        // Find the SubCategory ID based on the SubCategory name
-        // Find the SubCategory document by its name
-        const subCategoryObj = await SubCategory.findOne({ name: subCategory });
+      // Find the user's id based on their email
+      const user = await User.findOne({ email });
+      console.log(user, 'user') ;
+      
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
 
-        if (!subCategory) {
-            return res.status(404).json({ message: "SubCategory not found" });
-        }
+    // Find the SubCategory ID based on the SubCategory name
+   // Find the SubCategory document by its name
+   const subCategoryObj = await SubCategory.findOne({ name: subCategory });
 
-        const gigData = new Gig({
-            name: gig,
-            price: price,
-            freelancer: user._id, // Assign the User ID
-            imageUrl,
-            description: description,
-            subCategoryId: subCategoryObj._id, // Assign the SubCategory ID
-        });
+   if (!subCategory) {
+     return res.status(404).json({ message: "SubCategory not found" });
+   }
+    
+    const gigData = new Gig({
+      name: gig,
+      price: price,
+      freelancer: user._id, // Assign the User ID
+      imageUrl: cloudinaryImageUrl,
+      description: description,
+      subCategoryId: subCategoryObj._id, // Assign the SubCategory ID
+      });
 
-        await gigData.save();
+       await gigData.save();
 
         return res.status(200).json({
             message: "Gig added successfully",
