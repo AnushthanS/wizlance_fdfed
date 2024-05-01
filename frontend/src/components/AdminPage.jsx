@@ -4,12 +4,13 @@ import {
     Users,
     Dashboard,
     Categories,
-    Messages,
+    AllGigs,
 } from "./partials/index";
 import { useState } from "react";
 import { FiTarget } from "react-icons/fi";
 import { FaUserAlt } from "react-icons/fa";
-import { MdMessage, MdCategory } from "react-icons/md";
+import { MdCategory } from "react-icons/md";
+import { GrProjects } from "react-icons/gr";
 import { IoMdMailOpen } from "react-icons/io";
 
 const AdminPage = () => {
@@ -19,7 +20,7 @@ const AdminPage = () => {
         dashboard: Dashboard,
         users: Users,
         categories: Categories,
-        messages: Messages,
+        gigs: AllGigs,
         sendMail: AdminMail,
     };
 
@@ -60,10 +61,10 @@ const AdminPage = () => {
                         </li>
                         <li
                             className="py-4 hover:cursor-pointer flex gap-4 items-center hover:bg-gray-800 rounded-xl px-2"
-                            onClick={() => setActive("messages")}
+                            onClick={() => setActive("gigs")}
                         >
-                            <MdMessage />
-                            <span>Messages</span>
+                            <GrProjects />
+                            <span>Gigs</span>
                         </li>
                         <li
                             className="py-4 hover:cursor-pointer flex gap-4 items-center hover:bg-gray-800 rounded-xl px-2"

@@ -1124,6 +1124,10 @@ video {
   width: 3rem;
 }
 
+.w-16{
+  width: 4rem;
+}
+
 .w-2\/3{
   width: 66.666667%;
 }
@@ -1944,6 +1948,10 @@ video {
   padding-left: 8rem;
 }
 
+.pl-6{
+  padding-left: 1.5rem;
+}
+
 .pr-2{
   padding-right: 0.5rem;
 }
@@ -1978,6 +1986,10 @@ video {
 
 .pt-8{
   padding-top: 2rem;
+}
+
+.pb-6{
+  padding-bottom: 1.5rem;
 }
 
 .text-left{
@@ -2346,6 +2358,10 @@ video {
 
 .duration-300{
   transition-duration: 300ms;
+}
+
+.duration-150{
+  transition-duration: 150ms;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
