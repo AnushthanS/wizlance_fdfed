@@ -76,7 +76,7 @@ router.post("/api/subcategory", cacheData, shopController.getSubCategory);
  *       500:
  *         description: Internal server error
  */
-router.post("/api/category", cacheData, shopController.getCategoryImg);
+router.post("/api/category",  shopController.getCategoryImg);
 
 
 /**
