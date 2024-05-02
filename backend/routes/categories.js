@@ -140,7 +140,7 @@ router.get("/api/categories", cacheData, shopController.getCategories);
  *       500:
  *         description: Internal server error
  */
-router.post("/api/subcategories", cacheData, shopController.getSubCategories);
+router.post("/api/subcategories", shopController.getSubCategories);
 
 
 /**
@@ -178,7 +178,7 @@ router.post("/api/subcategories", cacheData, shopController.getSubCategories);
  *       500:
  *         description: Internal server error
  */
-router.post("/api/gigs", cacheData, shopController.getGigs);
+router.post("/api/gigs", shopController.getGigs);
 
 
 /**
@@ -214,7 +214,7 @@ router.post("/api/gigs", cacheData, shopController.getGigs);
  *       500:
  *         description: Internal server error
  */
-router.post("/api/gig/details", cacheData, shopController.getGigDetails);
+router.post("/api/gig/details", shopController.getGigDetails);
 
 
 /**
