@@ -41,6 +41,7 @@ exports.displayCategories = async (req, res) => {
         const key = req.originalUrl;
         // Seting the data to Redis
         await client.set(key, JSON.stringify(categories));
+
         console.log(key, "\nFetching from Database");
 
         res.status(200).json({
