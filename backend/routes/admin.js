@@ -212,6 +212,7 @@ router.post("/api/admin-delete-gig", adminController.deleteGig);
  *                 description: Name of the category to be added
  *               addCategoryImage:
  *                 type: string
+ * 
  *                 description: URL of the image for the category
  *     responses:
  *       302:
